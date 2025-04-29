@@ -7,32 +7,25 @@ namespace Runtime.Grid
 {
 	public class GridCell : SerializedMonoBehaviour
 	{
-		[SerializeField] private Transform _bottomSpriteHolder;
+		[SerializeField] private SpriteRenderer _bottomSpriteRenderer;
 		
 		[HideInInspector] [SerializeField] private int _cellX;
 		[HideInInspector] [SerializeField] private int _cellY;
 		
-		public int cellX => _cellX;
-		public int cellY => _cellY;
+		public int CellX => _cellX;
+		public int CellY => _cellY;
 
 		public void Initialize(float width, float height, int x, int y)
 		{
 			SetBottomSpriteScale(width, height);
 			SetCoordinates(x, y);
-			OnCellChanged();
 		}
 
 		private void SetBottomSpriteScale(float width, float height)
 		{
-			_bottomSpriteHolder.transform.localScale = new Vector3(width, height, 1f);
-		}
-
-		public void OnCellChanged()
-		{
-			if (Application.isPlaying) return;
+			_bottomSpriteRenderer.transform.localScale = new Vector3(width, height, 1f);
 		}
 		
-
 		private void SetCoordinates(int x, int y)
 		{
 			_cellX = x;

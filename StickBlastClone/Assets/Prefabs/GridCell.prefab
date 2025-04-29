@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7676097345798722731}
   - component: {fileID: 5834690766505102751}
   m_Layer: 0
-  m_Name: Bottom Sprite
+  m_Name: Middle Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5654503405742827899}
@@ -73,9 +73,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5177388603050735206, guid: 9bc483d0ebdf2cc40a29ca7051c673fb,
+  m_Sprite: {fileID: 7482667652216324306, guid: f70bdeb9f65b78e44a9a984141f6f3ac,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.19607843}
+  m_Color: {r: 0.32156864, g: 0.35686275, b: 0.85098046, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -139,6 +139,6 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  _bottomSpriteHolder: {fileID: 7676097345798722731}
+  _bottomSpriteRenderer: {fileID: 5834690766505102751}
   _cellX: 0
   _cellY: 0
