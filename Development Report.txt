@@ -1,0 +1,9 @@
+1.Gün
+
+- Stick Blast' ı indirip oynayarak test ettim. 
+- Yapmam gerekenlerin üstünde düşündüm.
+- Önceden oluşturduğum teplate ile yeni bir proje oluşturdum.
+- Templatemde Zenject, save yapısı, audio system, vibrate sistem, Level load gibi base yapılar bulunmakta.
+- Oyun özelinde bir grid sistemi oluşturdum.
+- Oyunun yapısına uygun bir input state machine ekledim.
+

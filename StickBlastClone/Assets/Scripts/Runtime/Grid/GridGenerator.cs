@@ -42,7 +42,7 @@ namespace Runtime.Grid
 			PopulateGrid();
 			PopulateEdge();
 			
-			this.CustomCellDrawing = new bool[horizontalCellCount, verticalCellCount];
+			//this.CustomCellDrawing = new bool[horizontalCellCount, verticalCellCount];
 		}
 
 		private void PopulateGrid()
@@ -114,21 +114,21 @@ namespace Runtime.Grid
 			}
 		}
 		
-		[TableMatrix(HorizontalTitle = "Custom Cell Drawing", DrawElementMethod = "DrawColoredEnumElement", ResizableColumns = false, RowHeight = 24)]
-		public bool[,] CustomCellDrawing;
-		
-		private static bool DrawColoredEnumElement(Rect rect, bool value)
-		{
-			if (Event.current.type == EventType.MouseDown && rect.Contains(Event.current.mousePosition))
-			{
-				value = !value;
-				GUI.changed = true;
-				Event.current.Use();
-			}
-
-			UnityEditor.EditorGUI.DrawRect(rect.Padding(1), value ? new Color(0.1f, 0.8f, 0.2f) : new Color(0, 0, 0, 0.5f));
-
-			return value;
-		}
+		// [TableMatrix(HorizontalTitle = "Custom Cell Drawing", DrawElementMethod = "DrawColoredEnumElement", ResizableColumns = false, RowHeight = 24)]
+		// public bool[,] CustomCellDrawing;
+		//
+		// private static bool DrawColoredEnumElement(Rect rect, bool value)
+		// {
+		// 	if (Event.current.type == EventType.MouseDown && rect.Contains(Event.current.mousePosition))
+		// 	{
+		// 		value = !value;
+		// 		GUI.changed = true;
+		// 		Event.current.Use();
+		// 	}
+		//
+		// 	UnityEditor.EditorGUI.DrawRect(rect.Padding(1), value ? new Color(0.1f, 0.8f, 0.2f) : new Color(0, 0, 0, 0.5f));
+		//
+		// 	return value;
+		// }
 	}
 }
