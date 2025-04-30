@@ -1,5 +1,6 @@
 using Runtime.Audio.Data;
 using Runtime.Data.Persistent.Level;
+using Runtime.Data.Persistent.PlaceholderDataSO;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Zenject;
@@ -11,10 +12,11 @@ namespace Runtime.Installers.DataInstaller
     {
         [SerializeField] private LevelsContainer levelsContainer;
         [SerializeField] private AudioData audioData;
+        [SerializeField] private PlaceholderSO placeholderSo;
         
         public override void InstallBindings()
         {
-            Container.BindInstances(levelsContainer,audioData);
+            Container.BindInstances(levelsContainer,audioData, placeholderSo);
         }
     }
 }

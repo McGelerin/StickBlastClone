@@ -5,8 +5,9 @@ namespace Runtime.Input.Raycasting
 {
     public interface IClickable
     {
-        PlaceHolderType OnClick();
-        void OnDrag();
+        public PlaceHolderType GetPlaceholderType();
+        public Vector3 GetPosition();
+        void OnDrag(Vector3 targetPosition);
         void OnDragEnd(bool isDeSpawn);
     }
 }

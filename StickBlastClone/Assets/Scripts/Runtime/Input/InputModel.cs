@@ -16,7 +16,5 @@ namespace Runtime.Input
         {
             _clickable = null;
         }
-
-        public bool IsTutorialRingClickable { get; set; }
     }
 }

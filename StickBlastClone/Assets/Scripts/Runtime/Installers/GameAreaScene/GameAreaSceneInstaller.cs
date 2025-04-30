@@ -2,6 +2,7 @@ using Runtime.GameArea;
 using Runtime.GameArea.LevelArea;
 using Runtime.GameArea.Spawn;
 using Runtime.Grid;
+using Runtime.GridChecker;
 using Runtime.PlaceHolder;
 using Runtime.PlaceHolderObject;
 using Runtime.Signals;
@@ -30,6 +31,7 @@ namespace Runtime.Installers.GameAreaScene
         private void BindGrid()
         {
             Container.Bind<GridGenerator>().FromComponentsOn(gridGeneratorGameObject).AsSingle();
+            Container.BindInterfacesAndSelfTo<EdgeChecker>().AsSingle();
         }
 
         private void BindSpawnArea()

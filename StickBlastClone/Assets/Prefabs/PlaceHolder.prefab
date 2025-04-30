@@ -163,7 +163,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 1929051275274811799}
   - component: {fileID: 3299851055450572677}
   - component: {fileID: 89476178454814691}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: U_B_Side (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
-  m_ProvidesContacts: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.36914062, y: 0.8242189, z: 0.05}
@@ -441,7 +441,7 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
-  m_ProvidesContacts: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.22, y: 1.1000003, z: 0.20000005}
@@ -523,7 +523,7 @@ GameObject:
   - component: {fileID: 7583080785969344692}
   - component: {fileID: 2840493844496875424}
   - component: {fileID: 2874909417190879628}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: L_Upper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -613,7 +613,7 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
-  m_ProvidesContacts: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.22, y: 1.1000003, z: 0.05}
@@ -629,7 +629,7 @@ GameObject:
   - component: {fileID: 1944946171333875182}
   - component: {fileID: 1254085045407933449}
   - component: {fileID: 8037306522861714547}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: U_B_Side
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -719,7 +719,7 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
-  m_ProvidesContacts: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.36914062, y: 0.8242189, z: 0.05}
@@ -735,7 +735,7 @@ GameObject:
   - component: {fileID: 9004124269029126543}
   - component: {fileID: 4150083598891672279}
   - component: {fileID: 6365258339095714057}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: U_B_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -825,7 +825,7 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
-  m_ProvidesContacts: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.3457031, y: 0.3671876, z: 0.05}
@@ -1000,7 +1000,7 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
-  m_ProvidesContacts: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 0.20000005, z: 0.005}
@@ -1106,7 +1106,7 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
-  m_ProvidesContacts: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.2, y: 1.0000002, z: 0.005}
@@ -1122,7 +1122,7 @@ GameObject:
   - component: {fileID: 9125819488697366004}
   - component: {fileID: 7593086959554553848}
   - component: {fileID: 6649252354796347930}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: L_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1212,7 +1212,7 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
-  m_ProvidesContacts: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.1, y: 0.22000006, z: 0.05}

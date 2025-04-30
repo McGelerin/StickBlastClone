@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Runtime.Data.Persistent.LevelDataSO
 {
-    [CreateAssetMenu(fileName = "Level", menuName = "Level Data", order = 0)]
+    [CreateAssetMenu(fileName = "Level", menuName = "Level/Level Data", order = 0)]
     public class LevelSo : SerializedScriptableObject
     {
         [Header("Level Data")]

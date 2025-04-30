@@ -7,4 +7,15 @@
 - Oyun özelinde bir grid sistemi oluşturdum.
 - Oyunun yapısına uygun bir input state machine ekledim.
 
+2.Gün
+
+-Placeholder objelerini Zenjet poolunda oluşturdum.
+-Placeholder objelerin spawn sistemini yazdım.
+-Level Dataları düzenledim.
+-Placeholder objelerin hareketini tamamladım.
+-Placeholder objeleri grid sistemi için gerekli dataları oluşturdum.
+-Placeholder objeleri gride sürüklendiğinde yerleşebildiğinde highlight olarak geri bildirim vermesi tamamlandı.
+
+
+
 

@@ -16,7 +16,8 @@ namespace Runtime.Installers.InfraStructure
         public override void InstallBindings()
         {
             InstallModules();
-            
+
+            BindHaptic();
             BindAudio();
             
             Container.BindInterfacesAndSelfTo<GameProgressController>().AsSingle();
@@ -39,8 +40,8 @@ namespace Runtime.Installers.InfraStructure
         
         private void BindHaptic()
         {
-            Container.BindInterfacesTo<HapticModel>().AsSingle();
-            Container.BindInterfacesTo<HapticController>().AsSingle();
+            Container.BindInterfacesAndSelfTo<HapticModel>().AsSingle();
+            Container.BindInterfacesAndSelfTo<HapticController>().AsSingle();
         }
     }
 }

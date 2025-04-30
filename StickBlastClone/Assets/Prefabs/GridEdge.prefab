@@ -231,6 +231,12 @@ MonoBehaviour:
   _leftEdgeSpriteRenderer: {fileID: 7150733275682147353}
   _downEdgeSpriteRenderer: {fileID: 8056389258154451255}
   _dotSpriteRenderer: {fileID: 3489136349871097926}
+  _defaultEdgeColor:
+    serializedVersion: 2
+    rgba: 4288231488
+  _highlightEdgeColor:
+    serializedVersion: 2
+    rgba: 2999766220
 --- !u!1 &5048317444209360831
 GameObject:
   m_ObjectHideFlags: 0

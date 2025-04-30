@@ -48,6 +48,11 @@ namespace Runtime.Input.InputStates
             _touch = UnityEngine.Input.GetTouch(0);
             _touchPosition = _touch.position;
             _clickable = _clickRaycaster.RaycastTouchPosition(_touchPosition);
+
+            if (_clickable != null)
+            {
+                _clickable.GetPlaceholderType();
+            }
         }
 
         public void Tick()
@@ -59,7 +64,7 @@ namespace Runtime.Input.InputStates
                 
                 if (_touch.phase == TouchPhase.Ended && !EventSystem.current.IsPointerOverGameObject(_touch.fingerId))
                 {
-                    _inputModel.SetClickable(null);
+                    _inputModel.ClearClickable();
                     SwitchToState(InputState.BeforeIdle);
 
                 }
@@ -67,6 +72,8 @@ namespace Runtime.Input.InputStates
                 {
                     if (Vector2.SqrMagnitude(_touchStartPosition - _touchPosition) > _switchToDragDeltaSquared)
                     {
+                        _inputModel.SetClickable(_clickable);
+                        
                         //_signalBus.Fire(new AudioPlaySignal(AudioPlayers.Sound, Sounds.click));
                         _signalBus.Fire(new VibrateSignal(HapticPatterns.PresetType.MediumImpact));
                         

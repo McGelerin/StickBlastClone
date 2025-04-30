@@ -40,8 +40,6 @@ namespace Runtime.Grid
 
 			PopulateGrid();
 			PopulateEdge();
-			
-			//this.CustomCellDrawing = new bool[horizontalCellCount, verticalCellCount];
 		}
 
 		private void PopulateGrid()

@@ -15,15 +15,21 @@ namespace Runtime.PlaceHolder
         IMemoryPool _pool;
         private Transform _firstTransform;
         private PlaceHolderType _placeHolderType;
+
+        public Vector3 GetPosition() => transform.position;
         
-        public PlaceHolderType OnClick()
+        public PlaceHolderType GetPlaceholderType()
         {
             return _placeHolderType;
         }
 
-        public void OnDrag()
+        public void OnDrag(Vector3 targetPosition)
         {
-            throw new System.NotImplementedException();
+            var position = transform.position;
+            Vector3 normalizedTargetPosition = Vector3.Lerp(position, position + targetPosition, 0.006f);
+
+            position = normalizedTargetPosition;
+            transform.position = position;
         }
 
         public void OnDragEnd(bool isDeSpawn)

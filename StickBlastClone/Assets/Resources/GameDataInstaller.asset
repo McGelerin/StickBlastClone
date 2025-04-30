@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelsContainer: {fileID: 11400000, guid: 3454eebc57335c640b080b2504bcbb4c, type: 2}
   audioData: {fileID: 11400000, guid: 9ec8bb8bf109a1a46ac3419c7eea38d3, type: 2}
+  placeholderSo: {fileID: 11400000, guid: d85f280469257b4489cbb16c4a47f66d, type: 2}

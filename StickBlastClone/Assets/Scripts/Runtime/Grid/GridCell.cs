@@ -14,6 +14,8 @@ namespace Runtime.Grid
 		
 		public int CellX => _cellX;
 		public int CellY => _cellY;
+		
+		public bool IsFilled { get; private set; }
 
 		public void Initialize(float width, float height, int x, int y)
 		{
@@ -21,6 +23,11 @@ namespace Runtime.Grid
 			SetCoordinates(x, y);
 		}
 
+		private void SetFill(bool isFill)
+		{
+			IsFilled = isFill;
+		}
+		
 		private void SetBottomSpriteScale(float width, float height)
 		{
 			_bottomSpriteRenderer.transform.localScale = new Vector3(width, height, 1f);
