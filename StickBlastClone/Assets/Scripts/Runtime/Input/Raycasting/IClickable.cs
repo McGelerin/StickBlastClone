@@ -1,9 +1,12 @@
+using Runtime.PlaceHolderObject;
 using UnityEngine;
 
 namespace Runtime.Input.Raycasting
 {
     public interface IClickable
     {
-        void OnClicked();
+        PlaceHolderType OnClick();
+        void OnDrag();
+        void OnDragEnd(bool isDeSpawn);
     }
 }

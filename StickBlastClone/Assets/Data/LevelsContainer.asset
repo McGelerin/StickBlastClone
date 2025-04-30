@@ -12,5 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 506721215edc478f85678337be5b9719, type: 3}
   m_Name: LevelsContainer
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   levelData:
-    m_Keys: 
+    m_Keys: 000000000100000002000000
+    m_Values:
+    - {fileID: 11400000, guid: 29c9df34bf27b3f428b433bec7152b24, type: 2}
+    - {fileID: 11400000, guid: d5b963c302266d4449a42e99a5fe8cef, type: 2}
+    - {fileID: 11400000, guid: a840a7eb92a13c745ac3d301a26f9445, type: 2}

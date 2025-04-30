@@ -1,3 +1,5 @@
+using System;
+using Cysharp.Threading.Tasks;
 using Runtime.Signals;
 using Zenject;
 
@@ -7,9 +9,14 @@ namespace Runtime.GameArea
     {
         [Inject] private SignalBus _signalBus;
         
-        public void Initialize()
+        public async void Initialize()
         {
-            _signalBus.Fire(new ChangeLoadingScreenActivationSignal(isActive: false, null));
+            GC.Collect();
+            await UniTask.NextFrame();
+            
+            _signalBus.Fire(new CreateLevelAreaSignal());
+
+            //_signalBus.Fire(new ChangeLoadingScreenActivationSignal(isActive: false, null));
         }
     }
 }

@@ -1,15 +1,14 @@
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
-using Sirenix.Utilities;
 using UnityEngine;
 
 namespace Runtime.Grid
 {
 	public class GridGenerator : SerializedMonoBehaviour
 	{
-		[OnValueChanged(nameof(GenerateGrid))] [OdinSerialize] private int horizontalCellCount;
-		[OnValueChanged(nameof(GenerateGrid))] [OdinSerialize] private int verticalCellCount;
+		[Range(0,6)][OnValueChanged(nameof(GenerateGrid))] [OdinSerialize] private int horizontalCellCount;
+		[Range(0,6)][OnValueChanged(nameof(GenerateGrid))] [OdinSerialize] private int verticalCellCount;
 		private float cellWidth = 1f;
 		private float cellHeight = 1f;
 		
@@ -113,22 +112,5 @@ namespace Runtime.Grid
 				DestroyImmediate(child.gameObject);
 			}
 		}
-		
-		// [TableMatrix(HorizontalTitle = "Custom Cell Drawing", DrawElementMethod = "DrawColoredEnumElement", ResizableColumns = false, RowHeight = 24)]
-		// public bool[,] CustomCellDrawing;
-		//
-		// private static bool DrawColoredEnumElement(Rect rect, bool value)
-		// {
-		// 	if (Event.current.type == EventType.MouseDown && rect.Contains(Event.current.mousePosition))
-		// 	{
-		// 		value = !value;
-		// 		GUI.changed = true;
-		// 		Event.current.Use();
-		// 	}
-		//
-		// 	UnityEditor.EditorGUI.DrawRect(rect.Padding(1), value ? new Color(0.1f, 0.8f, 0.2f) : new Color(0, 0, 0, 0.5f));
-		//
-		// 	return value;
-		// }
 	}
 }
