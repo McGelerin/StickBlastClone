@@ -23,7 +23,10 @@ namespace Runtime.Grid
 
 		public GridCell[,] Grid => _grid;
 		public GridEdge[,] Edges => _edges;
-		
+
+		public int HorizontalCellCount => horizontalCellCount;
+		public int VerticalCellCount => verticalCellCount;
+
 
 		// [Button(ButtonSizes.Medium)]
 		// private void UpdateCells()
@@ -44,11 +47,11 @@ namespace Runtime.Grid
 
 		private void PopulateGrid()
 		{
-			_grid = new GridCell[horizontalCellCount, verticalCellCount];
+			_grid = new GridCell[HorizontalCellCount, VerticalCellCount];
 
-			for (int x = 0; x < horizontalCellCount; x++)
+			for (int x = 0; x < HorizontalCellCount; x++)
 			{
-				for (int y = 0; y < verticalCellCount; y++)
+				for (int y = 0; y < VerticalCellCount; y++)
 				{
 					GridCell cell = Instantiate(_gridCellPrefab, transform.position, 
 					                            _gridCellPrefab.transform.rotation, 
@@ -58,9 +61,9 @@ namespace Runtime.Grid
 					cell.gameObject.name = $"Cell {x} , {y}";
 					cell.transform.parent = _gridCellHolder.transform;
 					
-					cell.transform.position = new Vector3((-(horizontalCellCount - 1) * cellWidth / 2f) + (cellWidth * x),
+					cell.transform.position = new Vector3((-(HorizontalCellCount - 1) * cellWidth / 2f) + (cellWidth * x),
 					                                      0f,
-					                                      (-(verticalCellCount - 1) * cellHeight / 2f) + (cellHeight * y));
+					                                      (-(VerticalCellCount - 1) * cellHeight / 2f) + (cellHeight * y));
 					
 					cell.Initialize(cellWidth, cellHeight, x ,y);
 				}
@@ -69,11 +72,11 @@ namespace Runtime.Grid
 		
 		private void PopulateEdge()
 		{
-			_edges = new GridEdge[horizontalCellCount + 1, verticalCellCount + 1];
+			_edges = new GridEdge[HorizontalCellCount + 1, VerticalCellCount + 1];
 
-			for (int x = 0; x <= horizontalCellCount; x++)
+			for (int x = 0; x <= HorizontalCellCount; x++)
 			{
-				for (int y = 0; y <= verticalCellCount; y++)
+				for (int y = 0; y <= VerticalCellCount; y++)
 				{
 					GridEdge edge = Instantiate(_gridEdgePrefab, 
 						transform.position, 
@@ -84,11 +87,11 @@ namespace Runtime.Grid
 					edge.gameObject.name = $"Edge {x} , {y}";
 					edge.transform.parent = _gridEdgeHolder.transform;
 					
-					edge.transform.position = new Vector3((-(horizontalCellCount - 1) * cellWidth / 2f) + (cellWidth * x),
+					edge.transform.position = new Vector3((-(HorizontalCellCount - 1) * cellWidth / 2f) + (cellWidth * x),
 						0f,
-						(-(verticalCellCount - 1) * cellHeight / 2f) + (cellHeight * y));
+						(-(VerticalCellCount - 1) * cellHeight / 2f) + (cellHeight * y));
 					
-					edge.Initialize(x ,y , y != verticalCellCount ,x != horizontalCellCount);
+					edge.Initialize(x ,y , y != VerticalCellCount ,x != HorizontalCellCount);
 				}
 			}
 		}

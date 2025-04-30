@@ -8,6 +8,7 @@ namespace Runtime.Grid
 	public class GridCell : SerializedMonoBehaviour
 	{
 		[SerializeField] private SpriteRenderer _bottomSpriteRenderer;
+		[SerializeField] private Color32 _defaultColor32;
 		
 		[HideInInspector] [SerializeField] private int _cellX;
 		[HideInInspector] [SerializeField] private int _cellY;
@@ -23,9 +24,14 @@ namespace Runtime.Grid
 			SetCoordinates(x, y);
 		}
 
-		private void SetFill(bool isFill)
+		public void SetFill(bool isFill)
 		{
 			IsFilled = isFill;
+		}
+
+		public void SetColor(Color32 color)
+		{
+			_bottomSpriteRenderer.color = color;
 		}
 		
 		private void SetBottomSpriteScale(float width, float height)

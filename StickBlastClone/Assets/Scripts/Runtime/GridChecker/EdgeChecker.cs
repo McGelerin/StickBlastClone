@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Runtime.Data.Persistent.PlaceholderDataSO;
+using Runtime.GameArea.Spawn;
 using Runtime.Grid;
+using Runtime.GridChecker.Signals;
 using Runtime.Input.Raycasting;
 using Runtime.PlaceHolderObject;
 using Sirenix.Utilities;
@@ -14,14 +16,17 @@ namespace Runtime.GridChecker
     {
         [Inject] private GridGenerator gridGenerator;
         private GridEdge[,] gridEdges;
-        private PlaceholderSO _placeholderSo;
         private List<CachePos> _cacheGridEdgePos = new List<CachePos>();
         
         private Vector3 edgeGridOrigin;
+        private PlaceholderSO _placeholderSo;
 
-        public EdgeChecker(PlaceholderSO placeholderSo)
+        private SignalBus _signalBus;
+        
+        public EdgeChecker(PlaceholderSO placeholderSo, SignalBus signalBus)
         {
             _placeholderSo = placeholderSo;
+            _signalBus = signalBus;
         }
 
         public void Initialize()
@@ -35,6 +40,37 @@ namespace Runtime.GridChecker
             if (CanPlaceObject(clickable.GetPlaceholderType(), clickable.GetPosition()))
             {
                 OpenCloseHighlight(true);
+            }
+        }
+
+        public void PlaceObjectOnGrid(IClickable clickable)
+        {
+            if (_cacheGridEdgePos.IsNullOrEmpty())
+            {
+                clickable.OnDragEnd(false);
+            }
+            else
+            {
+                foreach (var cachePos in _cacheGridEdgePos)
+                {
+                    if (cachePos.hasDownEdge)
+                    {
+                        var gridEdge = gridEdges[cachePos.posX,cachePos.posY];
+                        gridEdge.SetOccupied(Direction.Down);
+                        gridEdge.SetColor(Direction.Down, clickable.GetColor());
+                    }
+                    if (cachePos.hasLeftEdge)
+                    {
+                        var gridEdge = gridEdges[cachePos.posX,cachePos.posY];
+                        gridEdge.SetOccupied(Direction.Left);
+                        gridEdge.SetColor(Direction.Left, clickable.GetColor());
+                    }
+                }
+                
+                clickable.OnDragEnd(true);
+                _cacheGridEdgePos.Clear();
+                _signalBus.Fire(new SpawnedObjectClearSignal());
+                _signalBus.Fire(new CheckFillAreaSignal(clickable.GetColor()));
             }
         }
         
@@ -114,13 +150,12 @@ namespace Runtime.GridChecker
         
         private bool IsInsideGrid(int x, int y)
         {
-            return x >= 0 && x < gridEdges.GetLength(0) &&
+            return x >= 0 && x < gridEdges.GetLength(0)  &&
                    y >= 0 && y < gridEdges.GetLength(1);
         }
 
         private void OpenCloseHighlight(bool isOpen)
         {
-            Debug.Log("high" + isOpen);
             foreach (var t in _cacheGridEdgePos)
             {
                 if (t.hasDownEdge)

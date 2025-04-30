@@ -15,13 +15,12 @@ namespace Runtime.PlaceHolder
         IMemoryPool _pool;
         private Transform _firstTransform;
         private PlaceHolderType _placeHolderType;
-
-        public Vector3 GetPosition() => transform.position;
+        private Color32 _levelColor;
         
-        public PlaceHolderType GetPlaceholderType()
-        {
-            return _placeHolderType;
-        }
+        public Vector3 GetPosition() => transform.position;
+        public Color32 GetColor() => _levelColor;
+        public PlaceHolderType GetPlaceholderType() => _placeHolderType;
+
 
         public void OnDrag(Vector3 targetPosition)
         {
@@ -65,6 +64,8 @@ namespace Runtime.PlaceHolder
 
         private void SetColor(Color32 color)
         {
+            _levelColor = color;
+            
             foreach (SpriteRenderer allSpriteRenderer in allSpriteRenderers)
             {
                 allSpriteRenderer.color = color;

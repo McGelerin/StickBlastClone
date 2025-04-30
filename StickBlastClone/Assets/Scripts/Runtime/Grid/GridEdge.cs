@@ -1,5 +1,6 @@
 using Runtime.Identifiers;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 namespace Runtime.Grid
@@ -13,8 +14,11 @@ namespace Runtime.Grid
         [SerializeField] private SpriteRenderer _downEdgeSpriteRenderer;
         [SerializeField] private SpriteRenderer _dotSpriteRenderer;
 
-        public bool LeftEdgeIsOccupied { get; private set; }
-        public bool DownEdgeIsOccupied { get; private set; }
+        [OdinSerialize]private bool _leftEdgeIsOccupied;
+        public bool LeftEdgeIsOccupied => _leftEdgeIsOccupied;
+        
+        [OdinSerialize]private bool _downEdgeIsOccupied;
+        public bool DownEdgeIsOccupied => _downEdgeIsOccupied;
         
         public int CellX => _cellX;
         public int CellY => _cellY;
@@ -29,8 +33,24 @@ namespace Runtime.Grid
         {
             SetCoordinates(x, y);
             SetSpriteActive(leftEdgeActive, downEdgeActive);
-            LeftEdgeIsOccupied = false;
-            DownEdgeIsOccupied = false;
+            
+            if (!leftEdgeActive)
+            {
+                SetOccupied(Direction.Left);
+            }
+            else
+            {
+                _leftEdgeIsOccupied = false;
+            }
+
+            if (!downEdgeActive)
+            {
+                SetOccupied(Direction.Down);
+            }
+            else
+            {
+                _downEdgeIsOccupied = false;
+            }
         }
         
         private void SetSpriteActive(bool leftSpriteActive, bool downSpriteActive)
@@ -44,10 +64,10 @@ namespace Runtime.Grid
             switch (direction)
             {
                 case Direction.Left:
-                    LeftEdgeIsOccupied = true;
+                    _leftEdgeIsOccupied = true;
                     break;
                 case Direction.Down:
-                    DownEdgeIsOccupied = true;
+                    _downEdgeIsOccupied = true;
                     break;
             }
         }
@@ -57,10 +77,10 @@ namespace Runtime.Grid
             switch (direction)
             {
                 case Direction.Left:
-                    LeftEdgeIsOccupied = false;
+                    _leftEdgeIsOccupied = false;
                     break;
                 case Direction.Down:
-                    DownEdgeIsOccupied = false;
+                    _downEdgeIsOccupied = false;
                     break;
             }
         }
@@ -69,6 +89,19 @@ namespace Runtime.Grid
         {
             Color32 color = isOpen ? _highlightEdgeColor : _defaultEdgeColor;
 
+            switch (direction)
+            {
+                case Direction.Left:
+                    _leftEdgeSpriteRenderer.color = color;
+                    break;
+                case Direction.Down:
+                    _downEdgeSpriteRenderer.color = color;
+                    break;
+            }
+        }
+
+        public void SetColor(Direction direction, Color32 color)
+        {
             switch (direction)
             {
                 case Direction.Left:

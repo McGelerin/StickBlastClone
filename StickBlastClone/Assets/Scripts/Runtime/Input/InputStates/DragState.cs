@@ -65,6 +65,8 @@ namespace Runtime.Input.InputStates
 
         public void Exit()
         {
+            _edgeChecker.PlaceObjectOnGrid(_inputModel.Clickable);
+            _inputModel.ClearClickable();
         }
     }
 }

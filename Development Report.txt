@@ -15,7 +15,5 @@
 -Placeholder objelerin hareketini tamamladım.
 -Placeholder objeleri grid sistemi için gerekli dataları oluşturdum.
 -Placeholder objeleri gride sürüklendiğinde yerleşebildiğinde highlight olarak geri bildirim vermesi tamamlandı.
-
-
-
-
+-Placeholder objeler şekline göre boş alana yerleştirilmesi tamamlandı.
+-Grid fill olayı tamamlandı.
