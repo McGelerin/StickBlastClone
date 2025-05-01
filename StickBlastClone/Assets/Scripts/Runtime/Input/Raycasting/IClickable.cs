@@ -7,7 +7,6 @@ namespace Runtime.Input.Raycasting
     {
         public PlaceHolderType GetPlaceholderType();
         public Vector3 GetPosition();
-        public Color32 GetColor();
         void OnDrag(Vector3 targetPosition);
         void OnDragEnd(bool isDeSpawn);
     }

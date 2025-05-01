@@ -20,4 +20,4 @@
 
 3.Gün
 -Dot color checker ekledim.
--
+-Row/Column Blasting kontrolcusunu ekledim ve istenilen şekilde çalışıyor.

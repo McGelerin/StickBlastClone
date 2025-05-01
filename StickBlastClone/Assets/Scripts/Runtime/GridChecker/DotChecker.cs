@@ -1,6 +1,7 @@
 using Runtime.Grid;
 using Runtime.GridChecker.Signals;
 using Runtime.Infrastructures.Template;
+using Runtime.Models;
 using UniRx;
 using Zenject;
 
@@ -9,6 +10,13 @@ namespace Runtime.GridChecker
     public class DotChecker : SignalListener
     {
         [Inject] private GridGenerator _gridGenerator;
+        private IGameProgressModel _gameProgressModel;
+
+        public DotChecker(IGameProgressModel gameProgressModel)
+        {
+            _gameProgressModel = gameProgressModel;
+        }
+
 
         private void OnDotCheckSignal(DotCheckSignal signal)
         {
@@ -18,11 +26,11 @@ namespace Runtime.GridChecker
                 {
                     if (HasFilledEdge(x , y))
                     {
-                        _gridGenerator.Edges[x,y].SetDotColor(signal.LevelColor);
+                        _gridGenerator.Edges[x,y].SetDotColor(_gameProgressModel.ThemeColor);
                     }
                     else
                     {
-                        _gridGenerator.Edges[x,y].SetDotColor(signal.LevelColor, true);
+                        _gridGenerator.Edges[x,y].SetDotColor(_gameProgressModel.ThemeColor, true);
                     }
                 }
             }

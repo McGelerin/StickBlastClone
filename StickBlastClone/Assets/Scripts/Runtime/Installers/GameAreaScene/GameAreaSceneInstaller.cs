@@ -35,6 +35,7 @@ namespace Runtime.Installers.GameAreaScene
             Container.BindInterfacesAndSelfTo<EdgeChecker>().AsSingle();
             Container.BindInterfacesAndSelfTo<DotChecker>().AsSingle();
             Container.BindInterfacesAndSelfTo<GridFillChecker>().AsSingle();
+            Container.BindInterfacesAndSelfTo<RowColumnChecker>().AsSingle();
         }
 
         private void BindSpawnArea()
@@ -56,6 +57,7 @@ namespace Runtime.Installers.GameAreaScene
             Container.DeclareSignal<SpawnedObjectClearSignal>();
             Container.DeclareSignal<CheckFillAreaSignal>();
             Container.DeclareSignal<DotCheckSignal>();
+            Container.DeclareSignal<CheckRowColumnSignal>();
 
         }
         

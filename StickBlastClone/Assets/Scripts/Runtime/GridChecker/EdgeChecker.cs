@@ -4,6 +4,7 @@ using Runtime.GameArea.Spawn;
 using Runtime.Grid;
 using Runtime.GridChecker.Signals;
 using Runtime.Input.Raycasting;
+using Runtime.Models;
 using Runtime.PlaceHolderObject;
 using Sirenix.Utilities;
 using UnityEngine;
@@ -19,14 +20,16 @@ namespace Runtime.GridChecker
         private List<CachePos> _cacheGridEdgePos = new List<CachePos>();
         
         private Vector3 edgeGridOrigin;
-        private PlaceholderSO _placeholderSo;
-
-        private SignalBus _signalBus;
         
-        public EdgeChecker(PlaceholderSO placeholderSo, SignalBus signalBus)
+        private PlaceholderSO _placeholderSo;
+        private SignalBus _signalBus;
+        private IGameProgressModel _gameProgressModel;
+        
+        public EdgeChecker(PlaceholderSO placeholderSo, SignalBus signalBus, IGameProgressModel gameProgressModel)
         {
             _placeholderSo = placeholderSo;
             _signalBus = signalBus;
+            _gameProgressModel = gameProgressModel;
         }
 
         public void Initialize()
@@ -57,21 +60,21 @@ namespace Runtime.GridChecker
                     {
                         var gridEdge = gridEdges[cachePos.posX,cachePos.posY];
                         gridEdge.SetOccupied(Direction.Down);
-                        gridEdge.SetColor(Direction.Down, clickable.GetColor());
+                        gridEdge.SetColor(Direction.Down, _gameProgressModel.ThemeColor);
                     }
                     if (cachePos.hasLeftEdge)
                     {
                         var gridEdge = gridEdges[cachePos.posX,cachePos.posY];
                         gridEdge.SetOccupied(Direction.Left);
-                        gridEdge.SetColor(Direction.Left, clickable.GetColor());
+                        gridEdge.SetColor(Direction.Left, _gameProgressModel.ThemeColor);
                     }
                 }
                 
                 clickable.OnDragEnd(true);
                 _cacheGridEdgePos.Clear();
                 _signalBus.Fire(new SpawnedObjectClearSignal());
-                _signalBus.Fire(new DotCheckSignal(clickable.GetColor()));
-                _signalBus.Fire(new CheckFillAreaSignal(clickable.GetColor()));
+                _signalBus.Fire(new DotCheckSignal());
+                _signalBus.Fire(new CheckFillAreaSignal());
             }
         }
         

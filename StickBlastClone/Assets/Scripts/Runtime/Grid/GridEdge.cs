@@ -100,29 +100,22 @@ namespace Runtime.Grid
             }
         }
 
-        public void SetColor(Direction direction, Color32 color)
+        public void SetColor(Direction direction, Color32 color,  bool setDefault = false)
         {
             switch (direction)
             {
                 case Direction.Left:
-                    _leftEdgeSpriteRenderer.color = color;
+                    _leftEdgeSpriteRenderer.color = setDefault ? _defaultEdgeColor : color;
                     break;
                 case Direction.Down:
-                    _downEdgeSpriteRenderer.color = color;
+                    _downEdgeSpriteRenderer.color = setDefault ? _defaultEdgeColor : color;
                     break;
             }
         }
 
         public void SetDotColor(Color32 color, bool setDefault = false)
         {
-            if (!setDefault)
-            {
-                _dotSpriteRenderer.color = color;
-            }
-            else
-            {
-                _dotSpriteRenderer.color = _defaultEdgeColor;
-            }
+            _dotSpriteRenderer.color = !setDefault ? color : _defaultEdgeColor;
         }
         
         private void SetCoordinates(int x, int y)

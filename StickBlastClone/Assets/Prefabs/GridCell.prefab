@@ -140,5 +140,8 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _bottomSpriteRenderer: {fileID: 5834690766505102751}
+  _defaultColor:
+    serializedVersion: 2
+    rgba: 4292434771
   _cellX: 0
   _cellY: 0

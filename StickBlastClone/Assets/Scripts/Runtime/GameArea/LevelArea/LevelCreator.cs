@@ -11,12 +11,12 @@ namespace Runtime.GameArea.LevelArea
 {
     public class LevelCreator : SignalListener
     {
-        private readonly GameProgressModel _gameProgressModel;
+        private readonly IGameProgressModel _gameProgressModel;
         private readonly LevelsContainer _levelsContainer;
 
         [Inject] private GridGenerator gridGenerator;
 
-        public LevelCreator(GameProgressModel gameProgressModel, LevelsContainer levelsContainer)
+        public LevelCreator(IGameProgressModel gameProgressModel, LevelsContainer levelsContainer)
         {
             _gameProgressModel = gameProgressModel;
             _levelsContainer = levelsContainer;
