@@ -70,6 +70,7 @@ namespace Runtime.GridChecker
                 clickable.OnDragEnd(true);
                 _cacheGridEdgePos.Clear();
                 _signalBus.Fire(new SpawnedObjectClearSignal());
+                _signalBus.Fire(new DotCheckSignal(clickable.GetColor()));
                 _signalBus.Fire(new CheckFillAreaSignal(clickable.GetColor()));
             }
         }

@@ -17,3 +17,7 @@
 -Placeholder objeleri gride sürüklendiğinde yerleşebildiğinde highlight olarak geri bildirim vermesi tamamlandı.
 -Placeholder objeler şekline göre boş alana yerleştirilmesi tamamlandı.
 -Grid fill olayı tamamlandı.
+
+3.Gün
+-Dot color checker ekledim.
+-

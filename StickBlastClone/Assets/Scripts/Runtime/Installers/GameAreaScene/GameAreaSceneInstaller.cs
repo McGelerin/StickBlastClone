@@ -33,6 +33,7 @@ namespace Runtime.Installers.GameAreaScene
         {
             Container.Bind<GridGenerator>().FromComponentsOn(gridGeneratorGameObject).AsSingle();
             Container.BindInterfacesAndSelfTo<EdgeChecker>().AsSingle();
+            Container.BindInterfacesAndSelfTo<DotChecker>().AsSingle();
             Container.BindInterfacesAndSelfTo<GridFillChecker>().AsSingle();
         }
 
@@ -54,6 +55,7 @@ namespace Runtime.Installers.GameAreaScene
             Container.DeclareSignal<SpawnObjectSignal>();
             Container.DeclareSignal<SpawnedObjectClearSignal>();
             Container.DeclareSignal<CheckFillAreaSignal>();
+            Container.DeclareSignal<DotCheckSignal>();
 
         }
         

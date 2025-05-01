@@ -113,10 +113,17 @@ namespace Runtime.Grid
             }
         }
 
-        // private void SetDotColor(Color32 Color)
-        // {
-        //     
-        // }
+        public void SetDotColor(Color32 color, bool setDefault = false)
+        {
+            if (!setDefault)
+            {
+                _dotSpriteRenderer.color = color;
+            }
+            else
+            {
+                _dotSpriteRenderer.color = _defaultEdgeColor;
+            }
+        }
         
         private void SetCoordinates(int x, int y)
         {
