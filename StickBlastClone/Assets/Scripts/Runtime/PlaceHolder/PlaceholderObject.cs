@@ -25,7 +25,7 @@ namespace Runtime.PlaceHolder
         public void OnDrag(Vector3 targetPosition)
         {
             var position = transform.position;
-            Vector3 normalizedTargetPosition = Vector3.Lerp(position, position + targetPosition, 0.006f);
+            Vector3 normalizedTargetPosition = Vector3.Lerp(position, position + targetPosition, 0.01f);
 
             position = normalizedTargetPosition;
             transform.position = position;

@@ -23,10 +23,7 @@ namespace Runtime.Grid
         
         public int CellX => _cellX;
         public int CellY => _cellY;
-
-        private Tween _leftColorTween;
-        private Tween _downColorTween;
-
+        
         public Color32 DefaultEdgeColor => _defaultEdgeColor;
         [SerializeField] private Color32 _defaultEdgeColor;
         
@@ -90,15 +87,13 @@ namespace Runtime.Grid
                 case Direction.Left:
                     if (_leftEdgeSpriteRenderer.color != color)
                     {
-                        _leftColorTween?.Kill();
-                        _leftColorTween = _leftEdgeSpriteRenderer.DOColor(color, 0.1f);
+                        _leftEdgeSpriteRenderer.color = color;
                     }
                     break;
                 case Direction.Down:
                     if (_downEdgeSpriteRenderer.color != color)
                     {
-                        _downColorTween?.Kill();
-                        _downColorTween = _downEdgeSpriteRenderer.DOColor(color, 0.1f);
+                        _downEdgeSpriteRenderer.color = color;
                     }
                     break;
             }

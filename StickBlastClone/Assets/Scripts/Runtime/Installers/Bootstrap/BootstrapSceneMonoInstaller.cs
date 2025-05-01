@@ -1,4 +1,5 @@
 using Runtime.BootStrap;
+using Runtime.Infrastructures;
 using Zenject;
 
 namespace Runtime.Installers.Bootstrap
@@ -7,6 +8,7 @@ namespace Runtime.Installers.Bootstrap
     {
         public override void InstallBindings()
         {
+            Container.BindInterfacesAndSelfTo<ApplicationSettings>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<BootstrapSceneInitializer>().AsSingle();
         }
     }

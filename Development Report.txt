@@ -27,3 +27,5 @@
 -Bazı durumlar için titreşim eklendi.
 -Custom draw ile çizdiğim matristeki elemanları grid e boyayan sistemi tamamladım.
 -Level Win Lose Panel eklendi
+-Apk buildleri alarak telefona sensitivity testi yaptım.
+-Telefonda tıklamanın zor olduğunu düşündüm ve tıklama alanını genişlettim.

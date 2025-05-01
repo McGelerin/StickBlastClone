@@ -20,7 +20,7 @@ namespace Runtime.Data.Persistent.LevelDataSO
         
         [TableMatrix(HorizontalTitle = "Custom Cell Drawing", DrawElementMethod = "DrawColoredEnumElement", ResizableColumns = false, RowHeight = 24)]
         public bool[,] CustomCellDrawing = new bool[5,5];
-    
+#if UNITY_EDITOR
         private static bool DrawColoredEnumElement(Rect rect, bool value)
         {
             if (Event.current.type == EventType.MouseDown && rect.Contains(Event.current.mousePosition))
@@ -29,10 +29,11 @@ namespace Runtime.Data.Persistent.LevelDataSO
                 GUI.changed = true;
                 Event.current.Use();
             }
-    
+
             UnityEditor.EditorGUI.DrawRect(rect.Padding(1), value ? new Color(0.1f, 0.8f, 0.2f) : new Color(0, 0, 0, 0.5f));
     
             return value;
         }
+#endif
     }
 }
