@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Runtime.Identifiers;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
@@ -22,6 +23,9 @@ namespace Runtime.Grid
         
         public int CellX => _cellX;
         public int CellY => _cellY;
+
+        private Tween _leftColorTween;
+        private Tween _downColorTween;
 
         public Color32 DefaultEdgeColor => _defaultEdgeColor;
         [SerializeField] private Color32 _defaultEdgeColor;
@@ -88,14 +92,22 @@ namespace Runtime.Grid
         public void OpenCloseHighlight(Direction direction, bool isOpen)
         {
             Color32 color = isOpen ? _highlightEdgeColor : _defaultEdgeColor;
-
+            
             switch (direction)
             {
                 case Direction.Left:
-                    _leftEdgeSpriteRenderer.color = color;
+                    if (_leftEdgeSpriteRenderer.color != color)
+                    {
+                        _leftColorTween?.Kill(); // Öncekini iptal et
+                        _leftColorTween = _leftEdgeSpriteRenderer.DOColor(color, 0.1f);
+                    }
                     break;
                 case Direction.Down:
-                    _downEdgeSpriteRenderer.color = color;
+                    if (_downEdgeSpriteRenderer.color != color)
+                    {
+                        _downColorTween?.Kill();
+                        _downColorTween = _downEdgeSpriteRenderer.DOColor(color, 0.1f);
+                    }
                     break;
             }
         }
@@ -105,17 +117,17 @@ namespace Runtime.Grid
             switch (direction)
             {
                 case Direction.Left:
-                    _leftEdgeSpriteRenderer.color = setDefault ? _defaultEdgeColor : color;
+                    _leftEdgeSpriteRenderer.DOColor(setDefault ? _defaultEdgeColor : color, .2f);
                     break;
                 case Direction.Down:
-                    _downEdgeSpriteRenderer.color = setDefault ? _defaultEdgeColor : color;
+                    _downEdgeSpriteRenderer.DOColor(setDefault ? _defaultEdgeColor : color, .2f);
                     break;
             }
         }
 
         public void SetDotColor(Color32 color, bool setDefault = false)
         {
-            _dotSpriteRenderer.color = !setDefault ? color : _defaultEdgeColor;
+            _dotSpriteRenderer.DOColor(!setDefault ? color : _defaultEdgeColor, .2f);
         }
         
         private void SetCoordinates(int x, int y)

@@ -44,6 +44,11 @@ namespace Runtime.GridChecker
             {
                 OpenCloseHighlight(true);
             }
+            else
+            {
+                OpenCloseHighlight(false);
+                _cacheGridEdgePos.Clear();
+            }
         }
 
         public void PlaceObjectOnGrid(IClickable clickable)
@@ -94,8 +99,6 @@ namespace Runtime.GridChecker
 
                     if (!IsInsideGrid(checkX, checkY))
                     {
-                        OpenCloseHighlight(false);
-                        _cacheGridEdgePos.Clear();
                         return false;
                     }
                     
@@ -106,8 +109,6 @@ namespace Runtime.GridChecker
                     {
                         if (gridEdges[checkX,checkY].DownEdgeIsOccupied)
                         {
-                            OpenCloseHighlight(false);
-                            _cacheGridEdgePos.Clear();
                             return false;
                         }
                         
@@ -118,8 +119,6 @@ namespace Runtime.GridChecker
                     {
                         if (gridEdges[checkX,checkY].LeftEdgeIsOccupied)
                         {
-                            OpenCloseHighlight(false);
-                            _cacheGridEdgePos.Clear();
                             return false;
                         }
 

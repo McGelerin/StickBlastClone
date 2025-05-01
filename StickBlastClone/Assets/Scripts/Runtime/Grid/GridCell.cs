@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using Runtime.Identifiers;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -31,7 +32,7 @@ namespace Runtime.Grid
 
 		public void SetColor(Color32 color , bool setDefault = false)
 		{
-			_bottomSpriteRenderer.color = !setDefault ? color : _defaultColor;
+			_bottomSpriteRenderer.DOColor(!setDefault ? color : _defaultColor, .1f);
 		}
 		
 		private void SetBottomSpriteScale(float width, float height)
