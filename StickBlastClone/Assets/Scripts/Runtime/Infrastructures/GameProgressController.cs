@@ -21,12 +21,15 @@ namespace Runtime.Infrastructures
 
         protected override void SubscribeToSignals()
         {
-             _signalBus.GetStream<LevelSuccessSignal>().Subscribe(OnLevelSuccessSignal).AddTo(_disposables);
+             _signalBus.GetStream<LevelEndSignal>().Subscribe(OnLevelEndSignal).AddTo(_disposables);
         }
         
-        private void OnLevelSuccessSignal(LevelSuccessSignal signal)
+        private void OnLevelEndSignal(LevelEndSignal signal)
         {
-            UpdateLastCompletedLevel();
+            if (signal.IsLevelSuccess)
+            {
+                UpdateLastCompletedLevel();
+            }
         }
     }
 }

@@ -46,12 +46,8 @@ namespace Runtime.GameArea.LevelArea
                 {
                     if (gridData[x,y])
                     {
-                        var transposeX = gridData.GetLength(0) - 1 - x;
                         var transposeY = gridData.GetLength(1) - 1 - y;
-
-                        transposeX = gridData.GetLength(0) - 1 - transposeX;
-                        
-                        SetEdgeData(transposeX, transposeY);
+                        SetEdgeData(x, transposeY);
                     }
                 }
             }

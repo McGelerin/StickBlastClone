@@ -32,6 +32,7 @@ MonoBehaviour:
     assemblyNames:
     - Assembly-CSharp
     - Assembly-CSharp-firstpass
+    - Coffee.UIParticle
     - Lofelt.NiceVibrations
     - Lofelt.NiceVibrations.Demo
     - UniRx
