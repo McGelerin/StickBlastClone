@@ -15,11 +15,11 @@ namespace Runtime.Grid
         [SerializeField] private SpriteRenderer _downEdgeSpriteRenderer;
         [SerializeField] private SpriteRenderer _dotSpriteRenderer;
 
-        [OdinSerialize]private bool _leftEdgeIsOccupied;
-        public bool LeftEdgeIsOccupied => _leftEdgeIsOccupied;
+        [HideInInspector][OdinSerialize]private bool _leftEdgeIsOccupied;
+        [HideInInspector]public bool LeftEdgeIsOccupied => _leftEdgeIsOccupied;
         
-        [OdinSerialize]private bool _downEdgeIsOccupied;
-        public bool DownEdgeIsOccupied => _downEdgeIsOccupied;
+        [HideInInspector][OdinSerialize]private bool _downEdgeIsOccupied;
+        [HideInInspector]public bool DownEdgeIsOccupied => _downEdgeIsOccupied;
         
         public int CellX => _cellX;
         public int CellY => _cellY;
@@ -39,22 +39,14 @@ namespace Runtime.Grid
             SetSpriteActive(leftEdgeActive, downEdgeActive);
             
             if (!leftEdgeActive)
-            {
                 SetOccupied(Direction.Left);
-            }
             else
-            {
                 _leftEdgeIsOccupied = false;
-            }
 
             if (!downEdgeActive)
-            {
                 SetOccupied(Direction.Down);
-            }
             else
-            {
                 _downEdgeIsOccupied = false;
-            }
         }
         
         private void SetSpriteActive(bool leftSpriteActive, bool downSpriteActive)
@@ -98,7 +90,7 @@ namespace Runtime.Grid
                 case Direction.Left:
                     if (_leftEdgeSpriteRenderer.color != color)
                     {
-                        _leftColorTween?.Kill(); // Öncekini iptal et
+                        _leftColorTween?.Kill();
                         _leftColorTween = _leftEdgeSpriteRenderer.DOColor(color, 0.1f);
                     }
                     break;

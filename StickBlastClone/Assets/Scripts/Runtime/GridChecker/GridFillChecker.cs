@@ -13,6 +13,8 @@ namespace Runtime.GridChecker
         [Inject] private GridGenerator _gridGenerator;
         private IGameProgressModel _gameProgressModel;
 
+        private bool isFilling;
+
         public GridFillChecker(IGameProgressModel gameProgressModel)
         {
             _gameProgressModel = gameProgressModel;
@@ -20,6 +22,8 @@ namespace Runtime.GridChecker
 
         private void OnCheckFillAreaSignal(CheckFillAreaSignal signal)
         {
+            isFilling = false;
+            
             for (int x = 0; x < _gridGenerator.HorizontalCellCount; x++)
             {
                 for (int y = 0; y < _gridGenerator.VerticalCellCount; y++)
@@ -31,12 +35,16 @@ namespace Runtime.GridChecker
                         if (_gridGenerator.Edges[x , y +1].DownEdgeIsOccupied && _gridGenerator.Edges[x + 1, y].LeftEdgeIsOccupied)
                         {
                             FillArea(x, y , _gameProgressModel.ThemeColor);
+                            isFilling = true;
                         }
                     }
                 }
             }
-            
-            _signalBus.Fire(new CheckRowColumnSignal());
+
+            if (isFilling)
+            {
+                _signalBus.Fire(new CheckRowColumnSignal());
+            }
         }
 
         private void FillArea(int x, int y, Color32 color)

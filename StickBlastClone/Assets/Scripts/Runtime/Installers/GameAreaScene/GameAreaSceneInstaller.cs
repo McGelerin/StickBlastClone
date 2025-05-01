@@ -7,6 +7,7 @@ using Runtime.GridChecker.Signals;
 using Runtime.PlaceHolder;
 using Runtime.PlaceHolderObject;
 using Runtime.Signals;
+using Runtime.Signals.Settings;
 using UnityEngine;
 using Zenject;
 
@@ -58,7 +59,9 @@ namespace Runtime.Installers.GameAreaScene
             Container.DeclareSignal<CheckFillAreaSignal>();
             Container.DeclareSignal<DotCheckSignal>();
             Container.DeclareSignal<CheckRowColumnSignal>();
-
+            
+            //Setting Panel
+            Container.DeclareSignal<GameSceneSettingsChangeSignal>();
         }
         
         class PlaceholderPool : MonoPoolableMemoryPool<PlaceHolderType,Transform, Color32, IMemoryPool, PlaceholderObject>

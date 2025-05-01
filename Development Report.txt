@@ -22,3 +22,4 @@
 -Dot color checker ekledim.
 -Row/Column Blasting kontrolcusunu ekledim ve istenilen şekilde çalışıyor.
 -Dotween ile renk geçişleri yumuşatıldı.
+-Settings ve yeniden başlatma tuşu eklendi.
