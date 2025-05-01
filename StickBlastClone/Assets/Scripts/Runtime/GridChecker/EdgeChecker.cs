@@ -1,8 +1,13 @@
 using System.Collections.Generic;
+using Lofelt.NiceVibrations;
+using Runtime.Audio;
+using Runtime.Audio.Data;
+using Runtime.Audio.Signal.Audio;
 using Runtime.Data.Persistent.PlaceholderDataSO;
 using Runtime.GameArea.Spawn;
 using Runtime.Grid;
 using Runtime.GridChecker.Signals;
+using Runtime.Haptic.Signal;
 using Runtime.Input.Raycasting;
 using Runtime.Models;
 using Runtime.PlaceHolderObject;
@@ -56,6 +61,8 @@ namespace Runtime.GridChecker
             if (_cacheGridEdgePos.IsNullOrEmpty())
             {
                 clickable.OnDragEnd(false);
+                _signalBus.Fire(new AudioPlaySignal(AudioPlayers.Sound, Sounds.InputClick));
+                _signalBus.Fire(new VibrateSignal(HapticPatterns.PresetType.MediumImpact));
             }
             else
             {

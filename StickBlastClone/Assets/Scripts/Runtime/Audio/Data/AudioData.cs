@@ -20,6 +20,9 @@ namespace Runtime.Audio.Data
     {
         None,
         Gameplay1,
-        ButtonClick
+        ButtonClick,
+        InputClick,
+        DragCancel,
+        
     }
 }

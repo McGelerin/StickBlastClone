@@ -1,5 +1,8 @@
 using System;
 using Lofelt.NiceVibrations;
+using Runtime.Audio;
+using Runtime.Audio.Data;
+using Runtime.Audio.Signal.Audio;
 using Runtime.Haptic.Signal;
 using Runtime.Input.Enums;
 using Runtime.Input.Raycasting;
@@ -38,6 +41,9 @@ namespace Runtime.Input.InputStates
         
         public void Enter()
         {
+            _signalBus.Fire(new AudioPlaySignal(AudioPlayers.Sound, Sounds.InputClick));
+            _signalBus.Fire(new VibrateSignal(HapticPatterns.PresetType.MediumImpact));
+
             if (UnityEngine.Input.touchCount == 0)
             {
                 throw new Exception("No touch input detected when entering Click Input State!");
@@ -73,9 +79,6 @@ namespace Runtime.Input.InputStates
                     if (Vector2.SqrMagnitude(_touchStartPosition - _touchPosition) > _switchToDragDeltaSquared)
                     {
                         _inputModel.SetClickable(_clickable);
-                        
-                        //_signalBus.Fire(new AudioPlaySignal(AudioPlayers.Sound, Sounds.click));
-                        _signalBus.Fire(new VibrateSignal(HapticPatterns.PresetType.MediumImpact));
                         
                         SwitchToState(InputState.Drag);
                     }

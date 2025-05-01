@@ -75,6 +75,7 @@ namespace Runtime.Panels.Settings
         {
             _settingsMediator.SetUpOnOffIcons(SettingsTypes.Sound, !_audioModel.IsSoundMuted);
             _signalBus.Fire(new AudioButtonTypeSignal(AudioType.Sound, !_audioModel.IsSoundMuted));
+            _signalBus.Fire(new AudioButtonTypeSignal(AudioType.Music, !_audioModel.IsMusicMuted));
         }
         
         private void OnHapticButtonClicked()
