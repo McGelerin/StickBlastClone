@@ -33,3 +33,10 @@
 4.Gün
 -Shader graph ile blast için bir lazer efekti yaptım.
 -Laser için pool oluşturdum ve patlama olduğunda pooldan çağırdım.
+-Score sistemi yazıldı.
+-Level end checker eklendi. Bu sayede fail olma durumu kontrol edilebiliyor.
+-Sahne düzenlenmesi yapıldı.
+-Click ve yerleştirme iyileştirmesi yapıldı.
+-Win-fail ekranındaki assetler düzeltildi.
+-Level çeşitliliği arttırıldı ve şekil çeşitliliği arttırıldı.
+

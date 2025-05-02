@@ -2,6 +2,7 @@ using Runtime.Grid;
 using Runtime.GridChecker.Signals;
 using Runtime.Infrastructures.Template;
 using Runtime.Models;
+using Runtime.Signals;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -36,6 +37,11 @@ namespace Runtime.GridChecker
                         {
                             FillArea(x, y , _gameProgressModel.ThemeColor);
                             isFilling = true;
+                            
+                            if (!signal.IsInitialize)
+                            {
+                                _signalBus.Fire(new IncreaseScoreSignal(50));
+                            }
                         }
                     }
                 }

@@ -53,7 +53,7 @@ namespace Runtime.GameArea.LevelArea
             }
             
             _signalBus.Fire(new DotCheckSignal());
-            _signalBus.Fire(new CheckFillAreaSignal());
+            _signalBus.Fire(new CheckFillAreaSignal(true));
         }
         
         private void SetEdgeData(int x, int y)

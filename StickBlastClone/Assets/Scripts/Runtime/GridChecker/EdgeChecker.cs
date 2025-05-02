@@ -86,8 +86,9 @@ namespace Runtime.GridChecker
                 _signalBus.Fire(new SpawnedObjectClearSignal(clickable));
                 clickable.OnDragEnd(true);
                 _cacheGridEdgePos.Clear();
+                _signalBus.Fire(new IncreaseScoreSignal(20));
                 _signalBus.Fire(new DotCheckSignal());
-                _signalBus.Fire(new CheckFillAreaSignal());
+                _signalBus.Fire(new CheckFillAreaSignal(false));
                 _signalBus.Fire(new CheckLevelEndSignal());
             }
         }

@@ -3,6 +3,7 @@ using Runtime.Grid;
 using Runtime.GridChecker.Signals;
 using Runtime.Infrastructures.Template;
 using Runtime.Laser;
+using Runtime.Signals;
 using Sirenix.Utilities;
 using UniRx;
 using UnityEngine;
@@ -115,6 +116,7 @@ namespace Runtime.GridChecker
                 Vector3 laserPos = edges[index, _gridGenerator.VerticalCellCount / 2].transform.position;
                 var laser = _laserVFxFactory.Create(false, _vfxLifetime);
                 laser.transform.position = laserPos;
+                _signalBus.Fire(new IncreaseScoreSignal(100));
             }
         }
 
@@ -190,6 +192,7 @@ namespace Runtime.GridChecker
                 Vector3 laserPos = edges[_gridGenerator.HorizontalCellCount / 2 , index].transform.position;
                 var laser = _laserVFxFactory.Create(true, _vfxLifetime);
                 laser.transform.position = laserPos;
+                _signalBus.Fire(new IncreaseScoreSignal(100));
             }
         }
         
