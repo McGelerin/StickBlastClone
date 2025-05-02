@@ -36,7 +36,7 @@ namespace Runtime.Input.Raycasting
             {
                 var raycastHit = _raycastHits[index];
                 
-                if (raycastHit.transform.parent.parent.parent.TryGetComponent(out IClickable order))
+                if (raycastHit.transform.parent.TryGetComponent(out IClickable order))
                 {
                     return order;
                 }

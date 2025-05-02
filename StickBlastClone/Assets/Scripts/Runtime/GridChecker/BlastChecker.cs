@@ -2,21 +2,31 @@ using System.Collections.Generic;
 using Runtime.Grid;
 using Runtime.GridChecker.Signals;
 using Runtime.Infrastructures.Template;
+using Runtime.Laser;
 using Sirenix.Utilities;
 using UniRx;
+using UnityEngine;
 using Zenject;
 using Direction = Runtime.Identifiers.Direction;
 
 namespace Runtime.GridChecker
 {
-    public class RowColumnChecker : SignalListener
+    public class BlastChecker : SignalListener
     {
         [Inject] private GridGenerator _gridGenerator;
         
         List<int> _isRowBlast = new List<int>();
         List<int> _isColumnBlast = new List<int>();
-        
-        private void OnCheckRowColumnSignal(CheckRowColumnSignal signal)
+        private float _vfxLifetime = .2f;
+
+        private readonly LaserVFX.Factory _laserVFxFactory;
+
+        public BlastChecker(LaserVFX.Factory laserVFxFactory)
+        {
+            _laserVFxFactory = laserVFxFactory;
+        }
+
+        private void OnBlastCheck(BlastCheckSignal signal)
         {
             _isRowBlast.Clear();
             _isColumnBlast.Clear();
@@ -100,6 +110,11 @@ namespace Runtime.GridChecker
                 
                 edges[index, _gridGenerator.VerticalCellCount].ClearOccupied(Direction.Down);
                 edges[index, _gridGenerator.VerticalCellCount].SetColor(Direction.Down, default, true);
+
+                //LaserVfx
+                Vector3 laserPos = edges[index, _gridGenerator.VerticalCellCount / 2].transform.position;
+                var laser = _laserVFxFactory.Create(false, _vfxLifetime);
+                laser.transform.position = laserPos;
             }
         }
 
@@ -170,6 +185,11 @@ namespace Runtime.GridChecker
                 
                 edges[_gridGenerator.HorizontalCellCount , index].ClearOccupied(Direction.Left);
                 edges[_gridGenerator.HorizontalCellCount , index].SetColor(Direction.Left, default, true);
+                
+                //LaserVFX
+                Vector3 laserPos = edges[_gridGenerator.HorizontalCellCount / 2 , index].transform.position;
+                var laser = _laserVFxFactory.Create(true, _vfxLifetime);
+                laser.transform.position = laserPos;
             }
         }
         
@@ -220,8 +240,8 @@ namespace Runtime.GridChecker
         
         protected override void SubscribeToSignals()
         {
-            _signalBus.GetStream<CheckRowColumnSignal>()
-                .Subscribe(OnCheckRowColumnSignal)
+            _signalBus.GetStream<BlastCheckSignal>()
+                .Subscribe(OnBlastCheck)
                 .AddTo(_disposables);
         }
     }

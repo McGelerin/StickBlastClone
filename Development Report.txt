@@ -29,3 +29,7 @@
 -Level Win Lose Panel eklendi
 -Apk buildleri alarak telefona sensitivity testi yaptım.
 -Telefonda tıklamanın zor olduğunu düşündüm ve tıklama alanını genişlettim.
+
+4.Gün
+-Shader graph ile blast için bir lazer efekti yaptım.
+-Laser için pool oluşturdum ve patlama olduğunda pooldan çağırdım.

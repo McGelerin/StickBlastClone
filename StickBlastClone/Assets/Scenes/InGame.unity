@@ -17864,6 +17864,8 @@ MonoBehaviour:
   spawnAreaViewGameObject: {fileID: 924029447}
   placeholderPrefab: {fileID: 562565502327000933, guid: 0170449b01cab214b9e3ecc9535ab2c5,
     type: 3}
+  laserPrefab: {fileID: 9118732704439102831, guid: 97b54537967bf7d4d996a1dc1085d1ec,
+    type: 3}
 --- !u!114 &2125169964
 MonoBehaviour:
   m_ObjectHideFlags: 0

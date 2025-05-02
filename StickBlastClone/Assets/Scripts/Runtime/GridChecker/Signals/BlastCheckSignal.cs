@@ -1,6 +1,6 @@
 namespace Runtime.GridChecker.Signals
 {
-    public readonly struct CheckRowColumnSignal
+    public readonly struct BlastCheckSignal
     {
         
     }

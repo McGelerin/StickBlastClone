@@ -17,11 +17,11 @@ namespace Runtime.GameArea.Spawn
         
         private readonly GameProgressModel _gameProgressModel;
         private readonly LevelsContainer _levelsContainer;
-        private readonly PlaceholderObject.Factory _placeholderObjectFactory;
+        private readonly PlaceholderGridObject.Factory _placeholderObjectFactory;
 
         private int _spawnedObjects = 0;
 
-        public SpawnAreaController(GameProgressModel gameProgressModel, LevelsContainer levelsContainer, PlaceholderObject.Factory placeholderObjectFactory)
+        public SpawnAreaController(GameProgressModel gameProgressModel, LevelsContainer levelsContainer, PlaceholderGridObject.Factory placeholderObjectFactory)
         {
             _gameProgressModel = gameProgressModel;
             _levelsContainer = levelsContainer;

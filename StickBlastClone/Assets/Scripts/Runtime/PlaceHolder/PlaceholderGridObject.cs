@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Runtime.PlaceHolder
 {
-    public class PlaceholderObject : MonoBehaviour, IClickable, IPoolable<PlaceHolderType,Transform,Color32,IMemoryPool>
+    public class PlaceholderGridObject : MonoBehaviour, IClickable, IPoolable<PlaceHolderType,Transform,Color32,IMemoryPool>
     {
         [SerializeField] private SerializedDictionary<PlaceHolderType, GameObject> visualGameObjects = new SerializedDictionary<PlaceHolderType, GameObject>();
         [SerializeField] private List<SpriteRenderer> allSpriteRenderers = new List<SpriteRenderer>();
@@ -25,7 +25,7 @@ namespace Runtime.PlaceHolder
         public void OnDrag(Vector3 targetPosition)
         {
             var position = transform.position;
-            Vector3 normalizedTargetPosition = Vector3.Lerp(position, position + targetPosition, 0.01f);
+            Vector3 normalizedTargetPosition = Vector3.Lerp(position, position + targetPosition, 0.008f);
 
             position = normalizedTargetPosition;
             transform.position = position;
@@ -77,7 +77,7 @@ namespace Runtime.PlaceHolder
             visualGameObjects[_placeHolderType].SetActive(true);
         }
         
-        public class Factory : PlaceholderFactory<PlaceHolderType,Transform, Color32,PlaceholderObject>
+        public class Factory : PlaceholderFactory<PlaceHolderType,Transform, Color32,PlaceholderGridObject>
         {
         }
     }

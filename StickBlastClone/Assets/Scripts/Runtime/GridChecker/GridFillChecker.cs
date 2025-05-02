@@ -43,7 +43,7 @@ namespace Runtime.GridChecker
 
             if (isFilling)
             {
-                _signalBus.Fire(new CheckRowColumnSignal());
+                _signalBus.Fire(new BlastCheckSignal());
             }
         }
 
