@@ -39,4 +39,7 @@
 -Click ve yerleştirme iyileştirmesi yapıldı.
 -Win-fail ekranındaki assetler düzeltildi.
 -Level çeşitliliği arttırıldı ve şekil çeşitliliği arttırıldı.
-
+-Yeni tipte placeholder nesneler ekledim ve level dizayn yaptım.
+-Eksik yerlerdeki hapticler ve sesler ekledim.
+-Final buildi aldım.
+-Farklı cihazlarda testini yaptım.

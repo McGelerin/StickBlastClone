@@ -156,25 +156,10 @@ namespace Runtime.GridChecker
         //Extentsion yapılabilir
         private Vector2Int WorldToGridPosition(Vector3 worldPos, Vector3 gridOrigin, float cellWidth, float cellHeight, PlaceHolderGridObjectType placeHolderGridObjectType)
         {
-            int x;
-            int y;
+            Vector2 originOffset = _placeholderSo.PlaceholderOriginOffsets[placeHolderGridObjectType];
             
-            if (placeHolderGridObjectType == PlaceHolderGridObjectType.VerticalI)
-            {
-                x = Mathf.FloorToInt((worldPos.x + 1f - gridOrigin.x) / cellWidth);
-                y = Mathf.FloorToInt((worldPos.z + .5f - gridOrigin.z) / cellHeight);
-            }
-            else if (placeHolderGridObjectType == PlaceHolderGridObjectType.HorizontalI)
-            {
-                x = Mathf.FloorToInt((worldPos.x + .5f - gridOrigin.x) / cellWidth);
-                y = Mathf.FloorToInt((worldPos.z + 1f - gridOrigin.z) / cellHeight);
-            }
-            else
-            {
-                x = Mathf.FloorToInt((worldPos.x + .5f - gridOrigin.x) / cellWidth);
-                y = Mathf.FloorToInt((worldPos.z + .5f - gridOrigin.z) / cellHeight);
-            }
-            
+            int x = Mathf.FloorToInt((worldPos.x +  originOffset.x - gridOrigin.x) / cellWidth);
+            int y = Mathf.FloorToInt((worldPos.z +  originOffset.y - gridOrigin.z) / cellHeight);
             return new Vector2Int(x, y);
         }
         

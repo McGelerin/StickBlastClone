@@ -111,8 +111,8 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  RequirementScore: 1200
+  RequirementScore: 700
   LevelColor:
     serializedVersion: 2
     rgba: 4287299543
-  PlaceHolderTypes: 0000000001000000020000000300000006000000040000000500000007000000
+  PlaceHolderTypes: 00000000010000000800000009000000

@@ -1,9 +1,11 @@
 using System;
+using Lofelt.NiceVibrations;
 using Runtime.Audio;
 using Runtime.Audio.Data;
 using Runtime.Audio.Model;
 using Runtime.Audio.Signal.Audio;
 using Runtime.Haptic.Model;
+using Runtime.Haptic.Signal;
 using Runtime.Identifiers;
 using Runtime.Identifiers.Settings;
 using Runtime.Infrastructures.Template;
@@ -45,6 +47,7 @@ namespace Runtime.Panels.Settings
         {
             //play button click audio
             _signalBus.Fire(new AudioPlaySignal(AudioPlayers.Sound, Sounds.ButtonClick));
+            _signalBus.Fire(new VibrateSignal(HapticPatterns.PresetType.MediumImpact));
             
             switch (signal.GameSceneSettingsOption)
             {

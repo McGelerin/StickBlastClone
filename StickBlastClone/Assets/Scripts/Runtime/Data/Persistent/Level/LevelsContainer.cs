@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Runtime.Data.Persistent.LevelDataSO;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -8,8 +9,8 @@ namespace Runtime.Data.Persistent.Level
     [CreateAssetMenu(fileName = "LevelsContainer", menuName = "Level/LevelsDataContainer", order = 0)]
     public class LevelsContainer : SerializedScriptableObject
     {
-        [SerializeField]private SerializedDictionary<int, LevelSo> levelData = new SerializedDictionary<int, LevelSo>();
+        [SerializeField]private Dictionary<int, LevelSo> levelData;
 
-        public SerializedDictionary<int, LevelSo> LevelData => levelData;
+        public Dictionary<int, LevelSo> LevelData => levelData;
     }
 }

@@ -111,7 +111,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  RequirementScore: 1300
+  RequirementScore: 800
   LevelColor:
     serializedVersion: 2
     rgba: 4288344957

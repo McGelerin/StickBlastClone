@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Runtime.PlaceHolderObject;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace Runtime.Data.Persistent.PlaceholderDataSO
 {
@@ -11,6 +10,8 @@ namespace Runtime.Data.Persistent.PlaceholderDataSO
     public class PlaceholderSO : SerializedScriptableObject
     {
         public Dictionary<PlaceHolderGridObjectType, List<List<PlaceholderDataVO>>> PlaceHolderData;
+
+        public Dictionary<PlaceHolderGridObjectType, Vector2> PlaceholderOriginOffsets;
     }
     
     [Serializable]
@@ -19,5 +20,4 @@ namespace Runtime.Data.Persistent.PlaceholderDataSO
         public bool HasLeftEdge;
         public bool HasDownEdge;
     }
-
 }

@@ -1,15 +1,16 @@
 using System.Collections.Generic;
 using Runtime.Input.Raycasting;
 using Runtime.PlaceHolderObject;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Zenject;
 
 namespace Runtime.PlaceHolderGridObject
 {
-    public class PlaceholderGridObject : MonoBehaviour, IClickable, IPoolable<PlaceHolderGridObjectType,Transform,Color32,IMemoryPool>
+    public class PlaceholderGridObject : SerializedMonoBehaviour, IClickable, IPoolable<PlaceHolderGridObjectType,Transform,Color32,IMemoryPool>
     {
-        [SerializeField] private SerializedDictionary<PlaceHolderGridObjectType, GameObject> visualGameObjects = new SerializedDictionary<PlaceHolderGridObjectType, GameObject>();
+        [SerializeField] private Dictionary<PlaceHolderGridObjectType, GameObject> visualGameObjects;
         [SerializeField] private List<SpriteRenderer> allSpriteRenderers = new List<SpriteRenderer>();
         
         IMemoryPool _pool;

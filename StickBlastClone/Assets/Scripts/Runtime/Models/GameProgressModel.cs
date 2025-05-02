@@ -6,8 +6,6 @@ namespace Runtime.Models
 {
     public class GameProgressModel : IGameProgressModel
     {
-        
-        
         private int _level;
         public int Level => _level;
 

@@ -9,6 +9,10 @@ namespace Runtime.PlaceHolderObject
         UpperLX1,
         MirroredUpperLX1,
         UX1,
-        UperUX1
+        UperUX1,
+        DoubleHorizontalI,
+        DoubleVerticalI,
+        HorizontalI_2x,
+        VerticalI_2x
     }
 }

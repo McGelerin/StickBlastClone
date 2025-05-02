@@ -56,7 +56,7 @@ namespace Runtime.Panels.GameOverPanel
 				? "Continue"
 				: "Try Again";
 			
-			string levelText = $"Level {levelIndex}";
+			string levelText = $"Level {levelIndex + 1}";
 			_view.wonLevelText.SetText(levelText);
 			_view.lostLevelText.SetText(levelText);
 		}
