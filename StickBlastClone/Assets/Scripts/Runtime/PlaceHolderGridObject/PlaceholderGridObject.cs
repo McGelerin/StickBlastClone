@@ -5,21 +5,21 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using Zenject;
 
-namespace Runtime.PlaceHolder
+namespace Runtime.PlaceHolderGridObject
 {
-    public class PlaceholderGridObject : MonoBehaviour, IClickable, IPoolable<PlaceHolderType,Transform,Color32,IMemoryPool>
+    public class PlaceholderGridObject : MonoBehaviour, IClickable, IPoolable<PlaceHolderGridObjectType,Transform,Color32,IMemoryPool>
     {
-        [SerializeField] private SerializedDictionary<PlaceHolderType, GameObject> visualGameObjects = new SerializedDictionary<PlaceHolderType, GameObject>();
+        [SerializeField] private SerializedDictionary<PlaceHolderGridObjectType, GameObject> visualGameObjects = new SerializedDictionary<PlaceHolderGridObjectType, GameObject>();
         [SerializeField] private List<SpriteRenderer> allSpriteRenderers = new List<SpriteRenderer>();
         
         IMemoryPool _pool;
         private Transform _firstTransform;
-        private PlaceHolderType _placeHolderType;
+        private PlaceHolderGridObjectType placeHolderGridObjectType;
         private Color32 _levelColor;
         
         public Vector3 GetPosition() => transform.position;
         public Color32 GetColor() => _levelColor;
-        public PlaceHolderType GetPlaceholderType() => _placeHolderType;
+        public PlaceHolderGridObjectType GetPlaceholderType() => placeHolderGridObjectType;
 
 
         public void OnDrag(Vector3 targetPosition)
@@ -43,11 +43,11 @@ namespace Runtime.PlaceHolder
             }
         }
 
-        public void OnSpawned(PlaceHolderType placeHolderType,Transform firstTransform, Color32 color ,IMemoryPool pool)
+        public void OnSpawned(PlaceHolderGridObjectType placeHolderGridObjectType,Transform firstTransform, Color32 color ,IMemoryPool pool)
         {
             _pool = pool;
             _firstTransform = firstTransform;
-            _placeHolderType = placeHolderType;
+            this.placeHolderGridObjectType = placeHolderGridObjectType;
 
             SetColor(color);
             OpenVisual();
@@ -74,10 +74,10 @@ namespace Runtime.PlaceHolder
 
         private void OpenVisual()
         {
-            visualGameObjects[_placeHolderType].SetActive(true);
+            visualGameObjects[placeHolderGridObjectType].SetActive(true);
         }
         
-        public class Factory : PlaceholderFactory<PlaceHolderType,Transform, Color32,PlaceholderGridObject>
+        public class Factory : PlaceholderFactory<PlaceHolderGridObjectType,Transform, Color32,PlaceholderGridObject>
         {
         }
     }

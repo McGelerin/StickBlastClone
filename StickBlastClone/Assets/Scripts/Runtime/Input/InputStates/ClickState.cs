@@ -41,9 +41,6 @@ namespace Runtime.Input.InputStates
         
         public void Enter()
         {
-            _signalBus.Fire(new AudioPlaySignal(AudioPlayers.Sound, Sounds.InputClick));
-
-            
             if (UnityEngine.Input.touchCount == 0)
             {
                 throw new Exception("No touch input detected when entering Click Input State!");
@@ -58,6 +55,8 @@ namespace Runtime.Input.InputStates
             if (_clickable != null)
             {
                 _clickable.GetPlaceholderType();
+                _signalBus.Fire(new AudioPlaySignal(AudioPlayers.Sound, Sounds.InputClick));
+                _signalBus.Fire(new VibrateSignal(HapticPatterns.PresetType.MediumImpact));
             }
         }
 
@@ -78,10 +77,7 @@ namespace Runtime.Input.InputStates
                 {
                     if (Vector2.SqrMagnitude(_touchStartPosition - _touchPosition) > _switchToDragDeltaSquared)
                     {
-                        _signalBus.Fire(new VibrateSignal(HapticPatterns.PresetType.MediumImpact));
-                        
                         _inputModel.SetClickable(_clickable);
-                        
                         SwitchToState(InputState.Drag);
                     }
                 }

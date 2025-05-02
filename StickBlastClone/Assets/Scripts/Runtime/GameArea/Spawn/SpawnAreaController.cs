@@ -2,9 +2,11 @@ using System.Collections.Generic;
 using Runtime.Data.Persistent.Level;
 using Runtime.Data.Persistent.LevelDataSO;
 using Runtime.Infrastructures.Template;
+using Runtime.Input.Raycasting;
 using Runtime.Models;
-using Runtime.PlaceHolder;
+using Runtime.PlaceHolderGridObject;
 using Runtime.PlaceHolderObject;
+using Sirenix.Utilities;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -19,7 +21,8 @@ namespace Runtime.GameArea.Spawn
         private readonly LevelsContainer _levelsContainer;
         private readonly PlaceholderGridObject.Factory _placeholderObjectFactory;
 
-        private int _spawnedObjects = 0;
+        private List<IClickable> _spawnedPlaceholderGridObject = new List<IClickable>();
+        public List<IClickable> SpawnedPlaceholderGridObject => _spawnedPlaceholderGridObject;
 
         public SpawnAreaController(GameProgressModel gameProgressModel, LevelsContainer levelsContainer, PlaceholderGridObject.Factory placeholderObjectFactory)
         {
@@ -27,7 +30,7 @@ namespace Runtime.GameArea.Spawn
             _levelsContainer = levelsContainer;
             _placeholderObjectFactory = placeholderObjectFactory;
         }
-
+        
         private void OnSpawnObjectSignal(SpawnObjectSignal spawnObjectSignal)
         {
             SpawnPlaceholderObjects();
@@ -35,14 +38,14 @@ namespace Runtime.GameArea.Spawn
 
         private void OnSpawnedObjectClearSignal(SpawnedObjectClearSignal signal)
         {
-            _spawnedObjects--;
+            SpawnedPlaceholderGridObject.Remove(signal.Clickable);
+            SpawnedPlaceholderGridObject.TrimExcess();
             SpawnPlaceholderObjects();
         }
         
         private void SpawnPlaceholderObjects()
         {
-            if (_spawnedObjects != 0) return;
-            _spawnedObjects = 3;
+            if (!SpawnedPlaceholderGridObject.IsNullOrEmpty()) return;
             
             int level = _gameProgressModel.Level % _levelsContainer.LevelData.Count;
             
@@ -50,14 +53,16 @@ namespace Runtime.GameArea.Spawn
 
             for (int i = 0; i <= 2; i++)
             {
-                PlaceHolderType randomType = levelSo.PlaceHolderTypes[Random.Range(0, levelSo.PlaceHolderTypes.Count)];
+                PlaceHolderGridObjectType randomGridObjectType = levelSo.PlaceHolderTypes[Random.Range(0, levelSo.PlaceHolderTypes.Count)];
 
-                var placeholderObject = _placeholderObjectFactory.Create(randomType, _spawnAreaView.SpawnObjectHolder[i].transform,
+                PlaceholderGridObject placeholderObject = _placeholderObjectFactory.Create(randomGridObjectType, _spawnAreaView.SpawnObjectHolder[i].transform,
                     levelSo.LevelColor);
 
                 var transform = placeholderObject.transform;
                 transform.position = _spawnAreaView.SpawnObjectHolder[i].position;
                 transform.rotation = Quaternion.identity;
+                
+                SpawnedPlaceholderGridObject.Add(placeholderObject);
             }
         }
         

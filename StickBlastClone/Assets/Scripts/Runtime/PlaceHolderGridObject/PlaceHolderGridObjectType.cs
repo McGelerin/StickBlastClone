@@ -1,6 +1,6 @@
 namespace Runtime.PlaceHolderObject
 {
-    public enum PlaceHolderType
+    public enum PlaceHolderGridObjectType
     {
         HorizontalI,
         VerticalI,

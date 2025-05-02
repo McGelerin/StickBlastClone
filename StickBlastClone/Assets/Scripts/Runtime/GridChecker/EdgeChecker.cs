@@ -11,6 +11,7 @@ using Runtime.Haptic.Signal;
 using Runtime.Input.Raycasting;
 using Runtime.Models;
 using Runtime.PlaceHolderObject;
+using Runtime.Signals;
 using Sirenix.Utilities;
 using UnityEngine;
 using Zenject;
@@ -82,19 +83,20 @@ namespace Runtime.GridChecker
                     }
                 }
                 
+                _signalBus.Fire(new SpawnedObjectClearSignal(clickable));
                 clickable.OnDragEnd(true);
                 _cacheGridEdgePos.Clear();
-                _signalBus.Fire(new SpawnedObjectClearSignal());
                 _signalBus.Fire(new DotCheckSignal());
                 _signalBus.Fire(new CheckFillAreaSignal());
+                _signalBus.Fire(new CheckLevelEndSignal());
             }
         }
         
-        private bool CanPlaceObject(PlaceHolderType placeHolderType, Vector3 worldPos)
+        private bool CanPlaceObject(PlaceHolderGridObjectType placeHolderGridObjectType, Vector3 worldPos)
         {
-            var placeholderSizeData = _placeholderSo.PlaceHolderData[placeHolderType];
+            var placeholderSizeData = _placeholderSo.PlaceHolderData[placeHolderGridObjectType];
             List<CachePos> cacheGridEdgePos = new List<CachePos>();
-            Vector2Int gridPos = WorldToGridPosition(worldPos, edgeGridOrigin, 1, 1);
+            Vector2Int gridPos = WorldToGridPosition(worldPos, edgeGridOrigin, 1, 1 , placeHolderGridObjectType);
             
             for (int x = 0; x < placeholderSizeData.Count; x++)
             {
@@ -151,10 +153,27 @@ namespace Runtime.GridChecker
         }
         
         //Extentsion yapılabilir
-        private Vector2Int WorldToGridPosition(Vector3 worldPos, Vector3 gridOrigin, float cellWidth, float cellHeight)
+        private Vector2Int WorldToGridPosition(Vector3 worldPos, Vector3 gridOrigin, float cellWidth, float cellHeight, PlaceHolderGridObjectType placeHolderGridObjectType)
         {
-            int x = Mathf.FloorToInt((worldPos.x - gridOrigin.x) / cellWidth);
-            int y = Mathf.FloorToInt((worldPos.z - gridOrigin.z) / cellHeight);
+            int x;
+            int y;
+            
+            if (placeHolderGridObjectType == PlaceHolderGridObjectType.VerticalI)
+            {
+                x = Mathf.FloorToInt((worldPos.x + 1f - gridOrigin.x) / cellWidth);
+                y = Mathf.FloorToInt((worldPos.z + .5f - gridOrigin.z) / cellHeight);
+            }
+            else if (placeHolderGridObjectType == PlaceHolderGridObjectType.HorizontalI)
+            {
+                x = Mathf.FloorToInt((worldPos.x + .5f - gridOrigin.x) / cellWidth);
+                y = Mathf.FloorToInt((worldPos.z + 1f - gridOrigin.z) / cellHeight);
+            }
+            else
+            {
+                x = Mathf.FloorToInt((worldPos.x + .5f - gridOrigin.x) / cellWidth);
+                y = Mathf.FloorToInt((worldPos.z + .5f - gridOrigin.z) / cellHeight);
+            }
+            
             return new Vector2Int(x, y);
         }
         

@@ -1,11 +1,11 @@
 namespace Runtime.Signals
 {
-    public readonly struct LevelEndSignal
+    public readonly struct GameWinLoseSignal
     {
         private readonly bool _isLevelSuccess;
         public bool IsLevelSuccess => _isLevelSuccess;
 
-        public LevelEndSignal(bool isLevelSuccess)
+        public GameWinLoseSignal(bool isLevelSuccess)
         {
             _isLevelSuccess = isLevelSuccess;
         }

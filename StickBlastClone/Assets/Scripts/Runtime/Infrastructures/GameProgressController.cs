@@ -21,10 +21,10 @@ namespace Runtime.Infrastructures
 
         protected override void SubscribeToSignals()
         {
-             _signalBus.GetStream<LevelEndSignal>().Subscribe(OnLevelEndSignal).AddTo(_disposables);
+             _signalBus.GetStream<GameWinLoseSignal>().Subscribe(OnGameWinLose).AddTo(_disposables);
         }
         
-        private void OnLevelEndSignal(LevelEndSignal signal)
+        private void OnGameWinLose(GameWinLoseSignal signal)
         {
             if (signal.IsLevelSuccess)
             {

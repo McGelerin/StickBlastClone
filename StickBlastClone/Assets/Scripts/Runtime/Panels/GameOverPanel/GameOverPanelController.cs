@@ -21,8 +21,8 @@ namespace Runtime.Panels.GameOverPanel
 		
 		protected override void SubscribeToSignals()
 		{
-			_signalBus.GetStream<LevelEndSignal>()
-				.Subscribe(OnLevelEnd)
+			_signalBus.GetStream<GameWinLoseSignal>()
+				.Subscribe(GameWinLose)
 				.AddTo(_disposables);
 			
 			_mediator.OnContinueButtonClicked += ContinueButtonClickedHandler;
@@ -38,7 +38,7 @@ namespace Runtime.Panels.GameOverPanel
 			_mediator.DisableContinueButton();
 		}
 
-		private void OnLevelEnd(LevelEndSignal signal)
+		private void GameWinLose(GameWinLoseSignal signal)
 		{
 			_mediator.ActivateGameOverPanel(signal.IsLevelSuccess, _gameProgressModel.Level);
 			HapticPatterns.PresetType hapticPreset = signal.IsLevelSuccess ? HapticPatterns.PresetType.Success : HapticPatterns.PresetType.Failure;

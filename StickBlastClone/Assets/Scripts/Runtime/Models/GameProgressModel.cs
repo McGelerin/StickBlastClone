@@ -14,6 +14,9 @@ namespace Runtime.Models
         public Color32 ThemeColor => _themeColor;
         private Color32 _themeColor;
 
+        public int RequirementScore => _requirementScore;
+        private int _requirementScore;
+
         private const string GAME_PROGRESS_DATA_PATH = "GAME_PROGRESS";
         private const string LEVEL_KEY = "LEVEL";
 
@@ -23,10 +26,11 @@ namespace Runtime.Models
         {
             int level = Level % _levelsContainer.LevelData.Count;
             _themeColor = _levelsContainer.LevelData[level].LevelColor;
+            _requirementScore = _levelsContainer.LevelData[level].RequirementScore;
         }
         public GameProgressModel()
         {
-            _level = ES3.Load(LEVEL_KEY, GAME_PROGRESS_DATA_PATH, 0);;
+            _level = ES3.Load(LEVEL_KEY, GAME_PROGRESS_DATA_PATH, 0);
         }
 
         public void IncreaseLevel()

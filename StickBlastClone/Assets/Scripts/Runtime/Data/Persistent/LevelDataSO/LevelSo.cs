@@ -14,7 +14,7 @@ namespace Runtime.Data.Persistent.LevelDataSO
         public Color32 LevelColor;
 
         [Header("PlaceholderType")] 
-        public List<PlaceHolderType> PlaceHolderTypes = new List<PlaceHolderType>();
+        public List<PlaceHolderGridObjectType> PlaceHolderTypes = new List<PlaceHolderGridObjectType>();
         
         [Header("Grid Data")]
         

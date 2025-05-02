@@ -10,7 +10,7 @@ namespace Runtime.Installers.InfraStructure
         public override void InstallBindings()
         {
             //Game flow
-            Container.DeclareSignal<LevelEndSignal>();
+            Container.DeclareSignal<GameWinLoseSignal>();
             //Haptic
             Container.DeclareSignal<VibrateSignal>();
             //Audio

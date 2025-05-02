@@ -27,8 +27,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0.5, y: 0, z: -0.5}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 803060017037291972}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -73,8 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 7482667652216324306, guid: f70bdeb9f65b78e44a9a984141f6f3ac,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 79b749a07f293934c8ebddc3327136be, type: 3}
   m_Color: {r: 0.2509804, g: 0.21960786, b: 0.6, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -112,7 +111,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: -0.5}
-  m_LocalScale: {x: 0.1, y: 1, z: 1}
+  m_LocalScale: {x: 0.15, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 803060017037291972}
@@ -225,7 +224,13 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: _leftEdgeIsOccupied
+      Entry: 5
+      Data: false
+    - Name: _downEdgeIsOccupied
+      Entry: 5
+      Data: false
   _cellX: 0
   _cellY: 0
   _leftEdgeSpriteRenderer: {fileID: 7150733275682147353}
@@ -264,7 +269,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0.5, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 1, z: 1}
+  m_LocalScale: {x: 0.15, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 803060017037291972}

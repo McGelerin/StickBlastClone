@@ -1,5 +1,6 @@
 using Runtime.Panels.GameOverPanel;
 using Runtime.Panels.Header;
+using Runtime.Panels.ScorePanel;
 using Runtime.Panels.Settings;
 using Zenject;
 
@@ -12,6 +13,7 @@ namespace Runtime.Installers.GameAreaScene
             BindSettings();
             BindHeader();
             BindGameOverPanel();
+            BindScorePanel();
         }
         
         private void BindHeader()
@@ -31,6 +33,13 @@ namespace Runtime.Installers.GameAreaScene
             Container.BindInterfacesAndSelfTo<GameOverPanelController>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameOverPanelMediator>().AsSingle();
             Container.Bind<GameOverPanelView>().FromComponentInHierarchy().AsSingle();
+        }
+        
+        private void BindScorePanel()
+        {
+            Container.BindInterfacesAndSelfTo<ScorePanelController>().AsSingle();
+            Container.Bind<ScorePanelMediator>().AsSingle();
+            Container.Bind<ScorePanelView>().FromComponentInHierarchy().AsSingle();
         }
     }
 }

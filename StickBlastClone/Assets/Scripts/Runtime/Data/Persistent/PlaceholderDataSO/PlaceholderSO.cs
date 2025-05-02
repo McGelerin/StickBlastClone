@@ -10,7 +10,7 @@ namespace Runtime.Data.Persistent.PlaceholderDataSO
     [CreateAssetMenu(fileName = "PlaceholderData", menuName = "Placeholder/Placeholder Data", order = 0)]
     public class PlaceholderSO : SerializedScriptableObject
     {
-        public Dictionary<PlaceHolderType, List<List<PlaceholderDataVO>>> PlaceHolderData;
+        public Dictionary<PlaceHolderGridObjectType, List<List<PlaceholderDataVO>>> PlaceHolderData;
     }
     
     [Serializable]
