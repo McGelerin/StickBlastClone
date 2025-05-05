@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2657b136e482411287f553111339f3bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HorizontalLaser: {fileID: 2622990361230249900}
-  VerticalLaser: {fileID: 7931580490246376849}
+  HorizontalLaserSpriteRenderer: {fileID: 4305230773477898751}
+  VerticalLaserSpriteRenderer: {fileID: 8199745595155430338}
 --- !u!1001 &399291578474180962
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -127,9 +127,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 399291578474180962}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7931580490246376849 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7753003922457885939, guid: 62d788994c3562941bb488dbd12fa0b6,
+--- !u!212 &8199745595155430338 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8377197506950466208, guid: 62d788994c3562941bb488dbd12fa0b6,
     type: 3}
   m_PrefabInstance: {fileID: 399291578474180962}
   m_PrefabAsset: {fileID: 0}
@@ -206,9 +206,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fa32d89bd71a8640bd8efaa85f3ee45, type: 3}
---- !u!1 &2622990361230249900 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7753003922457885939, guid: 5fa32d89bd71a8640bd8efaa85f3ee45,
+--- !u!212 &4305230773477898751 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8377197506950466208, guid: 5fa32d89bd71a8640bd8efaa85f3ee45,
     type: 3}
   m_PrefabInstance: {fileID: 5764194293999268703}
   m_PrefabAsset: {fileID: 0}

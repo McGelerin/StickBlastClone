@@ -11,12 +11,12 @@ namespace Runtime.Input.Raycasting
         private readonly int _layerMask = 1 << 6;
         private const float RAYCAST_DISTANCE = 50f;
 
-        private Camera _mainCamera;
+        private UnityEngine.Camera _mainCamera;
 
         [Inject]
         public ClickRaycaster()
         {
-            _mainCamera = Camera.main;
+            _mainCamera = UnityEngine.Camera.main;
         }
         
         public IClickable RaycastTouchPosition(Vector3 clickPosition)

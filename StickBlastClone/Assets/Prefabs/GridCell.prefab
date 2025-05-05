@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5654503405742827899}
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: f70bdeb9f65b78e44a9a984141f6f3ac,
     type: 3}
   m_Color: {r: 0.32156864, g: 0.35686275, b: 0.85098046, a: 1}
@@ -140,8 +140,5 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _bottomSpriteRenderer: {fileID: 5834690766505102751}
-  _defaultColor:
-    serializedVersion: 2
-    rgba: 4292434771
   _cellX: 0
   _cellY: 0

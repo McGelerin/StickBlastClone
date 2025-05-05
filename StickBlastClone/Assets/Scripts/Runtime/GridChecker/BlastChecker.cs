@@ -3,6 +3,7 @@ using Runtime.Grid;
 using Runtime.GridChecker.Signals;
 using Runtime.Infrastructures.Template;
 using Runtime.Laser;
+using Runtime.Models;
 using Runtime.Signals;
 using Sirenix.Utilities;
 using UniRx;
@@ -21,10 +22,12 @@ namespace Runtime.GridChecker
         private float _vfxLifetime = .2f;
 
         private readonly LaserVFX.Factory _laserVFxFactory;
+        private readonly IGameProgressModel _gameProgressModel;
 
-        public BlastChecker(LaserVFX.Factory laserVFxFactory)
+        public BlastChecker(LaserVFX.Factory laserVFxFactory, IGameProgressModel gameProgressModel)
         {
             _laserVFxFactory = laserVFxFactory;
+            _gameProgressModel = gameProgressModel;
         }
 
         private void OnBlastCheck(BlastCheckSignal signal)
@@ -65,7 +68,7 @@ namespace Runtime.GridChecker
                 for (int y = 0; y < _gridGenerator.VerticalCellCount; y++)
                 {
                     gridCells[index, y].SetFill(false);
-                    gridCells[index,y].SetColor(default,true);
+                    gridCells[index,y].OpenCloseFill(default,false);
                     
                     
                     edges[index, y].ClearOccupied(Direction.Down);
@@ -114,9 +117,11 @@ namespace Runtime.GridChecker
 
                 //LaserVfx
                 Vector3 laserPos = edges[index, _gridGenerator.VerticalCellCount / 2].transform.position;
-                var laser = _laserVFxFactory.Create(false, _vfxLifetime);
+                var laser = _laserVFxFactory.Create(false, _vfxLifetime , _gameProgressModel.ThemeColor);
                 laser.transform.position = laserPos;
                 _signalBus.Fire(new IncreaseScoreSignal(100));
+                _signalBus.Fire(new ShakeCameraSignal());
+
             }
         }
 
@@ -130,7 +135,7 @@ namespace Runtime.GridChecker
                 for (int x = 0; x < _gridGenerator.HorizontalCellCount; x++)
                 {
                     gridCells[x, index].SetFill(false);
-                    gridCells[x, index].SetColor(default,true);
+                    gridCells[x, index].OpenCloseFill(default,false);
                     
                     edges[x, index].ClearOccupied(Direction.Left);
                     edges[x , index].SetColor(Direction.Left, default, true);
@@ -190,9 +195,10 @@ namespace Runtime.GridChecker
                 
                 //LaserVFX
                 Vector3 laserPos = edges[_gridGenerator.HorizontalCellCount / 2 , index].transform.position;
-                var laser = _laserVFxFactory.Create(true, _vfxLifetime);
+                var laser = _laserVFxFactory.Create(true, _vfxLifetime , _gameProgressModel.ThemeColor);
                 laser.transform.position = laserPos;
                 _signalBus.Fire(new IncreaseScoreSignal(100));
+                _signalBus.Fire(new ShakeCameraSignal());
             }
         }
         

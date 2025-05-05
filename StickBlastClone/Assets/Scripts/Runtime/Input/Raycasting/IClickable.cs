@@ -7,6 +7,8 @@ namespace Runtime.Input.Raycasting
     {
         public PlaceHolderGridObjectType GetPlaceholderType();
         public Vector3 GetPosition();
+        public void OnClick();
+        public void OnClickEnd();
         void OnDrag(Vector3 targetPosition);
         void OnDragEnd(bool isDeSpawn);
     }

@@ -56,7 +56,7 @@ namespace Runtime.GridChecker
         private void FillArea(int x, int y, Color32 color)
         {
             _gridGenerator.Grid[x,y].SetFill(true);
-            _gridGenerator.Grid[x,y].SetColor(color);
+            _gridGenerator.Grid[x,y].OpenCloseFill(color , true);
         }
         
         protected override void SubscribeToSignals()

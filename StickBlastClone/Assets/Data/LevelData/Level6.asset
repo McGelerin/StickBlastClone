@@ -56,15 +56,18 @@ MonoBehaviour:
       Data: false
     - Name: 
       Entry: 5
-      Data: true
-    - Name: 
-      Entry: 5
       Data: false
     - Name: 
       Entry: 5
       Data: true
     - Name: 
       Entry: 5
+      Data: true
+    - Name: 
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 5
       Data: false
     - Name: 
       Entry: 5
@@ -87,9 +90,6 @@ MonoBehaviour:
     - Name: 
       Entry: 5
       Data: true
-    - Name: 
-      Entry: 5
-      Data: false
     - Name: 
       Entry: 5
       Data: true
@@ -115,4 +115,4 @@ MonoBehaviour:
   LevelColor:
     serializedVersion: 2
     rgba: 4287299543
-  PlaceHolderTypes: 000000000100000002000000030000000600000004000000050000000700000008000000090000000a0000000b000000
+  PlaceHolderTypes: 000000000100000002000000030000000600000004000000050000000700000008000000090000000a0000000b0000000c0000000d000000

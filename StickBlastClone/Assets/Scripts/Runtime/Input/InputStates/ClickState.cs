@@ -57,6 +57,7 @@ namespace Runtime.Input.InputStates
                 _clickable.GetPlaceholderType();
                 _signalBus.Fire(new AudioPlaySignal(AudioPlayers.Sound, Sounds.InputClick));
                 _signalBus.Fire(new VibrateSignal(HapticPatterns.PresetType.MediumImpact));
+                _clickable.OnClick();
             }
         }
 
@@ -69,6 +70,7 @@ namespace Runtime.Input.InputStates
                 
                 if (_touch.phase == TouchPhase.Ended && !EventSystem.current.IsPointerOverGameObject(_touch.fingerId))
                 {
+                    _clickable?.OnClickEnd();
                     _inputModel.ClearClickable();
                     SwitchToState(InputState.BeforeIdle);
 

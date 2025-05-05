@@ -4,15 +4,16 @@ using Zenject;
 
 namespace Runtime.Laser
 {
-    public class LaserVFX : MonoBehaviour, IPoolable<bool,float,IMemoryPool>
+    public class LaserVFX : MonoBehaviour, IPoolable<bool,float, Color32 ,IMemoryPool>
     {
-        [SerializeField] private GameObject HorizontalLaser;
-        [SerializeField] private GameObject VerticalLaser;
+        [SerializeField] private SpriteRenderer HorizontalLaserSpriteRenderer;
+        [SerializeField] private SpriteRenderer VerticalLaserSpriteRenderer;
         
         private IMemoryPool _pool;
         private float _startTime;
         private float _lifeTime;
         private bool _isHorizontal;
+        private Color32 _blastColor;
         
         public void Update()
         {
@@ -24,17 +25,18 @@ namespace Runtime.Laser
         
         public void OnDespawned()
         {
-            HorizontalLaser.SetActive(false);
-            VerticalLaser.SetActive(false);
+            HorizontalLaserSpriteRenderer.gameObject.SetActive(false);
+            VerticalLaserSpriteRenderer.gameObject.SetActive(false);
         }
         
-        public void OnSpawned(bool isHorizontal, float lifeTime, IMemoryPool pool)
+        public void OnSpawned(bool isHorizontal, float lifeTime, Color32 blastColor ,IMemoryPool pool)
         {
             _pool = pool;
             _isHorizontal = isHorizontal;
             _lifeTime = lifeTime;
             _startTime = Time.realtimeSinceStartup;
-
+            _blastColor = blastColor;
+            
             OpenLaser();
         }
 
@@ -42,15 +44,17 @@ namespace Runtime.Laser
         {
             if (_isHorizontal)
             {
-                HorizontalLaser.SetActive(true);
+                HorizontalLaserSpriteRenderer.color = _blastColor;
+                HorizontalLaserSpriteRenderer.gameObject.SetActive(true);
             }
             else
             {
-                VerticalLaser.SetActive(true);
+                VerticalLaserSpriteRenderer.color = _blastColor;
+                VerticalLaserSpriteRenderer.gameObject.SetActive(true);
             }
         }
         
-        public class Factory : PlaceholderFactory<bool, float, LaserVFX>
+        public class Factory : PlaceholderFactory<bool, float, Color32,LaserVFX>
         {
         }
     }

@@ -1,3 +1,4 @@
+using Runtime.Camera;
 using Runtime.GameArea;
 using Runtime.GameArea.LevelArea;
 using Runtime.GameArea.Spawn;
@@ -34,6 +35,7 @@ namespace Runtime.Installers.GameAreaScene
             BindSpawnArea();
             BindScore();
             BindLevelEnd();
+            BindCamera();
             
             Container.BindInterfacesAndSelfTo<LevelCreator>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameAreaInitializer>().AsSingle();
@@ -64,6 +66,12 @@ namespace Runtime.Installers.GameAreaScene
         {
             Container.BindInterfacesAndSelfTo<LevelEndController>().AsSingle();
         }
+
+        private void BindCamera()
+        {
+            Container.Bind<UnityEngine.Camera>().FromComponentInHierarchy().AsSingle();
+            Container.BindInterfacesAndSelfTo<CameraController>().AsSingle();
+        }
         
         private void BindPool()
         {
@@ -75,10 +83,10 @@ namespace Runtime.Installers.GameAreaScene
                     .FromComponentInNewPrefab(placeholderPrefab)
                     .UnderTransformGroup("PlaceholderObjects"));
             
-            Container.BindFactory<bool, float, LaserVFX ,LaserVFX.Factory>()
+            Container.BindFactory<bool, float, Color32, LaserVFX ,LaserVFX.Factory>()
                 // We could just use FromMonoPoolableMemoryPool here instead, but
                 // for IL2CPP to work we need our pool class to be used explicitly here
-                .FromPoolableMemoryPool<bool, float, LaserVFX, LaserPool>(poolBinder => poolBinder
+                .FromPoolableMemoryPool<bool, float, Color32, LaserVFX, LaserPool>(poolBinder => poolBinder
                     .WithInitialSize(5)
                     .FromComponentInNewPrefab(laserPrefab)
                     .UnderTransformGroup("LaserObjects"));
@@ -94,6 +102,7 @@ namespace Runtime.Installers.GameAreaScene
             Container.DeclareSignal<BlastCheckSignal>();
             Container.DeclareSignal<IncreaseScoreSignal>();
             Container.DeclareSignal<CheckLevelEndSignal>();
+            Container.DeclareSignal<ShakeCameraSignal>();
             
             //Setting Panel
             Container.DeclareSignal<GameSceneSettingsChangeSignal>();
@@ -106,7 +115,7 @@ namespace Runtime.Installers.GameAreaScene
         {
         }
         
-        class LaserPool : MonoPoolableMemoryPool<bool, float, IMemoryPool, LaserVFX>
+        class LaserPool : MonoPoolableMemoryPool<bool, float, Color32, IMemoryPool, LaserVFX>
         {
         }
     }

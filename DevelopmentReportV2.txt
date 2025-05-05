@@ -1,0 +1,14 @@
+1.Gün
+
+- Tüm art desing ı değiştirdim.
+- Fill olma durumunu renk değiştirme yerine büyüyerek fill olma olarak değiştirdim.
+- Placeholder grid objelerini daha optimize çalışacak şekilde düzenleme yaptım.
+- Placeholder objelerin tutulup bırakılmalarında büyüyüp küçülme ve offsetli bir şekilde tutulma eklendi.
+- Spawn alanı 3 parçaya bölündü ve objeyi tutma kolaylaştırıldı.
+- Win/fail çalışma durumu incelendi ve doğru sonuçlar verdiği gözlemlendi.
+- Oyunda arka plan mavi olduğu için arka plana su görseli olacak şekilde değiştirildi.
+- Blast olma durumunda camera shake eklendi.
+- Lazer rengi tema rengine göre değişmesi eklendi.
+- Oyuna C, mirrored C, II_x2 horizontal ve II_x2 vertical eklendi.
+
+

@@ -65,7 +65,7 @@ namespace Runtime.Grid
 					                                      0f,
 					                                      (-(VerticalCellCount - 1) * cellHeight / 2f) + (cellHeight * y));
 					
-					cell.Initialize(cellWidth, cellHeight, x ,y);
+					cell.Initialize(x ,y);
 				}
 			}
 		}

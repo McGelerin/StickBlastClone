@@ -35,6 +35,8 @@ MonoBehaviour:
     - Coffee.UIParticle
     - Lofelt.NiceVibrations
     - Lofelt.NiceVibrations.Demo
+    - sc.stylizedwater2.editor
+    - sc.stylizedwater2.runtime
     - UniRx
     - UniRx.Examples
     - UniTask

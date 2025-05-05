@@ -1,28 +1,39 @@
-using System.Collections.Generic;
+using DG.Tweening;
+using Runtime.Data.Persistent.SpriteContainer;
 using Runtime.Input.Raycasting;
 using Runtime.PlaceHolderObject;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Rendering;
 using Zenject;
 
 namespace Runtime.PlaceHolderGridObject
 {
     public class PlaceholderGridObject : SerializedMonoBehaviour, IClickable, IPoolable<PlaceHolderGridObjectType,Transform,Color32,IMemoryPool>
     {
-        [SerializeField] private Dictionary<PlaceHolderGridObjectType, GameObject> visualGameObjects;
-        [SerializeField] private List<SpriteRenderer> allSpriteRenderers = new List<SpriteRenderer>();
+        [SerializeField] private SpriteRenderer visualSpriteRenderers;
+        [SerializeField] private SpriteContainerSO spriteContainerSo;
+        [SerializeField] private float clickOffset = 1f;
         
         IMemoryPool _pool;
         private Transform _firstTransform;
         private PlaceHolderGridObjectType placeHolderGridObjectType;
-        private Color32 _levelColor;
         
         public Vector3 GetPosition() => transform.position;
-        public Color32 GetColor() => _levelColor;
         public PlaceHolderGridObjectType GetPlaceholderType() => placeHolderGridObjectType;
+        
+        public void OnClick()
+        {
+            visualSpriteRenderers.transform.DOScale(Vector3.one, .001f);
+            Vector3 firstPos = transform.position;
+            transform.DOMove(new Vector3(firstPos.x, firstPos.y, firstPos.z + clickOffset), .001f);
+        }
 
-
+        public void OnClickEnd()
+        {
+            visualSpriteRenderers.transform.DOScale(new Vector3(.7f,.7f, .7f), .001f);
+            transform.DOMove(_firstTransform.position, .001f);
+        }
+        
         public void OnDrag(Vector3 targetPosition)
         {
             var position = transform.position;
@@ -40,6 +51,7 @@ namespace Runtime.PlaceHolderGridObject
             }
             else
             {
+                visualSpriteRenderers.transform.DOScale(new Vector3(.7f,.7f, .7f), .001f);
                 transform.position = _firstTransform.position;
             }
         }
@@ -49,33 +61,34 @@ namespace Runtime.PlaceHolderGridObject
             _pool = pool;
             _firstTransform = firstTransform;
             this.placeHolderGridObjectType = placeHolderGridObjectType;
-
+            visualSpriteRenderers.transform.localScale = new Vector3(.7f,.7f, .7f);
+            
             SetColor(color);
+            SetSprite();
             OpenVisual();
         }
-        
+
         public void OnDespawned()
         {
             _pool = null;
-            foreach (GameObject gameObject in visualGameObjects.Values)
-            {
-                gameObject.SetActive(false);
-            }
+            visualSpriteRenderers.gameObject.SetActive(false);
+            this.DOKill();
         }
 
         private void SetColor(Color32 color)
         {
-            _levelColor = color;
-            
-            foreach (SpriteRenderer allSpriteRenderer in allSpriteRenderers)
-            {
-                allSpriteRenderer.color = color;
-            }
+            visualSpriteRenderers.color = color;
+        }
+
+        private void SetSprite()
+        {
+            visualSpriteRenderers.sprite = spriteContainerSo.SpriteData[placeHolderGridObjectType].Sprite;
+            visualSpriteRenderers.flipX = spriteContainerSo.SpriteData[placeHolderGridObjectType].FlipX;
         }
 
         private void OpenVisual()
         {
-            visualGameObjects[placeHolderGridObjectType].SetActive(true);
+            visualSpriteRenderers.gameObject.SetActive(true);
         }
         
         public class Factory : PlaceholderFactory<PlaceHolderGridObjectType,Transform, Color32,PlaceholderGridObject>

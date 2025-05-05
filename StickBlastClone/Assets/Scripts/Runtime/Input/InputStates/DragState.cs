@@ -63,9 +63,9 @@ namespace Runtime.Input.InputStates
             _signalBus.Fire(changeInputStateSignal);
         }
 
-        public void Exit()
+        public async void Exit()
         {
-            _edgeChecker.PlaceObjectOnGrid(_inputModel.Clickable);
+            await _edgeChecker.PlaceObjectOnGrid(_inputModel.Clickable);
             _inputModel.ClearClickable();
         }
     }

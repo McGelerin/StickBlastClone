@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Lofelt.NiceVibrations;
 using Runtime.Audio;
 using Runtime.Audio.Data;
@@ -57,7 +58,7 @@ namespace Runtime.GridChecker
             }
         }
 
-        public void PlaceObjectOnGrid(IClickable clickable)
+        public async UniTask PlaceObjectOnGrid(IClickable clickable)
         {
             if (_cacheGridEdgePos.IsNullOrEmpty())
             {
@@ -89,6 +90,8 @@ namespace Runtime.GridChecker
                 _signalBus.Fire(new IncreaseScoreSignal(20));
                 _signalBus.Fire(new DotCheckSignal());
                 _signalBus.Fire(new CheckFillAreaSignal(false));
+
+                await UniTask.NextFrame();
                 _signalBus.Fire(new CheckLevelEndSignal());
             }
         }
