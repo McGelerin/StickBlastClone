@@ -12,7 +12,7 @@
 - UniRx
 - Unitask
 - Stylized Water 2
-- 
+  
 ## Used DI
 - Zenject
   
